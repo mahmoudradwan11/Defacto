@@ -9,6 +9,7 @@ import 'package:defacto/modules/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'core/controllers/observer.dart';
 import 'core/network/remote/constants.dart';
 import 'modules/screens/home.dart';
 import 'modules/screens/login.dart';
@@ -26,6 +27,7 @@ void main() async {
     statusBarColor: Colors.transparent,
     statusBarIconBrightness: Brightness.dark,
   ));
+  Bloc.observer = MyBlocObserver();
   Widget startWidget;
   if (onboarding != null) {
     if (token != null) {
