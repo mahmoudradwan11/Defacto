@@ -1,8 +1,8 @@
-import 'package:bloc/bloc.dart';
 import 'package:defacto/core/controllers/store/store_states.dart';
 import 'package:defacto/core/network/remote/constants.dart';
 import 'package:defacto/core/network/remote/store_helper.dart';
 import 'package:defacto/models/store_models/home_model.dart';
+import 'package:defacto/models/store_models/notification.dart';
 import 'package:defacto/models/store_models/search_model.dart';
 import 'package:defacto/modules/screens/cart.dart';
 import 'package:defacto/modules/screens/favorite.dart';
@@ -55,10 +55,20 @@ class DefactoCubit extends Cubit<DefactoStates> {
     });
   }
   int currentIndex = 0;
-  void changeIndex(int index)
-  {
+  void changeIndex(int index) {
     currentIndex = index;
     emit(ChangeScreenIndex());
+  }
+  NotificationModel? notificationModel;
+  void getNotification(){
+    DioHelperStore.getData(url:ApiConstant.NOTIFICATION,token: token).then((value){
+      notificationModel  =NotificationModel.fromJson(value.data);
+      print('not = ${notificationModel!.data!.data![0].title}');
+      emit(GetNotification());
+    }).catchError((error){
+      print(error.toString());
+      emit(ErrorGetNotification());
+    });
   }
   List<Widget> screens = const
   [

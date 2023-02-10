@@ -1,3 +1,4 @@
+import 'package:defacto/core/controllers/payment/payment_cubit.dart';
 import 'package:defacto/core/controllers/store/store_cubit.dart';
 import 'package:defacto/core/controllers/store/store_states.dart';
 import 'package:defacto/core/network/local/cache.dart';
@@ -13,7 +14,6 @@ import 'core/controllers/observer.dart';
 import 'core/network/remote/constants.dart';
 import 'modules/screens/home.dart';
 import 'modules/screens/login.dart';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   DioHelperStore.init();
@@ -42,15 +42,22 @@ void main() async {
     startWidget: startWidget,
   ));
 }
-
 class MyApp extends StatelessWidget {
   final Widget? startWidget;
   const MyApp({super.key, this.startWidget});
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => DefactoCubit()..getHomeData(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => DefactoCubit()
+            ..getHomeData()
+            ..getNotification(),
+        ),
+        BlocProvider(
+            create:(context)=>PaymentCubit()..getAuthToken()),
+      ],
       child: BlocConsumer<DefactoCubit, DefactoStates>(
           listener: (context, state) {},
           builder: (context, state) {
