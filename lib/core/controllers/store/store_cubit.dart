@@ -70,12 +70,12 @@ class DefactoCubit extends Cubit<DefactoStates> {
       emit(ErrorGetNotification());
     });
   }
-  List<Widget> screens = const
+  List<Widget> screens =
   [
     ProductsScreen(),
-    Favorite(),
-    Cart(),
-    Profile(),
+    const Favorite(),
+    const Cart(),
+    const Profile(),
   ];
   List<BottomNavigationBarItem>items =const
   [

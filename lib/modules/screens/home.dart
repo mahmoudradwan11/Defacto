@@ -14,16 +14,6 @@ class Home extends StatelessWidget {
         builder: (context, state){
           var cubit = DefactoCubit.get(context);
             return Scaffold(
-              appBar: AppBar(
-                actions: [
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: IconButton(onPressed:(){
-                      navigateTo(context,const NotificationScreen());
-                    }, icon: const Icon(Icons.notification_important_outlined)),
-                  )
-                ],
-              ),
               backgroundColor: Colors.white,
               body: cubit.screens[cubit.currentIndex],
               bottomNavigationBar: BottomNavigationBar(
