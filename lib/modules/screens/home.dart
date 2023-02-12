@@ -1,5 +1,7 @@
 import 'package:defacto/core/controllers/store/store_cubit.dart';
 import 'package:defacto/core/controllers/store/store_states.dart';
+import 'package:defacto/modules/screens/notefication.dart';
+import 'package:defacto/modules/widgets/funtions/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,6 +14,16 @@ class Home extends StatelessWidget {
         builder: (context, state){
           var cubit = DefactoCubit.get(context);
             return Scaffold(
+              appBar: AppBar(
+                actions: [
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: IconButton(onPressed:(){
+                      navigateTo(context,const NotificationScreen());
+                    }, icon: const Icon(Icons.notification_important_outlined)),
+                  )
+                ],
+              ),
               backgroundColor: Colors.white,
               body: cubit.screens[cubit.currentIndex],
               bottomNavigationBar: BottomNavigationBar(

@@ -9,14 +9,14 @@ class PaymentCubit extends Cubit<PaymentStates> {
 
   static PaymentCubit get(context) => BlocProvider.of(context);
   PaymentAuth? paymentAuth;
-
   Future<void> getAuthToken() async {
     emit(PaymentAuthLoadingState());
     DioHelperPayment.postData(
         url: ApiConstant.getAuthToken,
         data: {"api_key": ApiConstant.paymentApiKey}).then((value) {
       paymentAuth = PaymentAuth.fromJson(value.data);
-      print('The token is = ${paymentAuth!.token}');
+      authToken =  paymentAuth!.token;
+      print('The  Auth token is = $authToken');
       emit(PaymentAuthSuccessState());
       authToken = paymentAuth!.token;
     }).catchError((error) {

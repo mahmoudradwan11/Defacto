@@ -8,9 +8,8 @@ ThemeData lightTheme = ThemeData(
     elevation: 0.0,
     titleTextStyle: TextStyle(
         color: Colors.black,
-        fontSize: 35.0,
-        fontWeight: FontWeight.bold,
-        fontFamily: 'Bursh'),
+        fontSize: 20.0,
+        fontWeight: FontWeight.w500,),
     iconTheme: IconThemeData(
       color: Colors.black,
     ),

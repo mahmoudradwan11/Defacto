@@ -25,9 +25,6 @@ class ProductsScreen extends StatelessWidget {
             );
           } else {
             return Scaffold(
-              appBar: AppBar(
-                title: Text('Home',style: TextStyle(fontSize: 20),),
-              ),
               body:SingleChildScrollView(
                 child: Column(
                   children: [
