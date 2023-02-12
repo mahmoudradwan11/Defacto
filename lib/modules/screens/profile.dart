@@ -1,5 +1,3 @@
-import 'package:defacto/core/controllers/payment/payment_cubit.dart';
-import 'package:defacto/core/controllers/payment/payment_states.dart';
 import 'package:defacto/core/controllers/store/store_cubit.dart';
 import 'package:defacto/core/controllers/store/store_states.dart';
 import 'package:flutter/material.dart';

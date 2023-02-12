@@ -55,7 +55,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(
             create: (context) => DefactoCubit()
               ..getHomeData()
-              ..getNotification(),
+              ..getNotification()
+              ..createDatabase(),
         ),
         BlocProvider(
             create: (context) => PaymentCubit()

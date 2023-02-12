@@ -37,7 +37,7 @@ class SearchScreen extends StatelessWidget {
               body: Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: ListView.separated(
-                    itemBuilder:(context,index)=>buildSearchItem(cubit.searchModel!.data!.data![index]),
+                    itemBuilder:(context,index)=>buildSearchItem(cubit.searchModel!.data!.data![index],context),
                     separatorBuilder:(context,index)=>const BuildDivider(),
                     itemCount:cubit.searchModel!.data!.data!.length
                 ),

@@ -1,8 +1,10 @@
+import 'package:defacto/core/controllers/store/store_cubit.dart';
 import 'package:defacto/models/store_models/search_model.dart';
+import 'package:defacto/modules/widgets/funtions/toast.dart';
 import 'package:flutter/material.dart.';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-Widget buildSearchItem(SearchData searchModel)=>Container(
+Widget buildSearchItem(SearchData searchModel,context)=>Container(
   color: Colors.grey[200],
   child: Row(
     children: [
@@ -61,7 +63,13 @@ Widget buildSearchItem(SearchData searchModel)=>Container(
         height: 130,
         width:50,
         child: IconButton(
-           onPressed:(){},
+           onPressed:(){
+             DefactoCubit.get(context).insertCart(
+                 name: searchModel.name!,
+                 price: searchModel.price!.toString(),
+                 image: searchModel.image!);
+             showToast('Inserted', ToastStates.SUCCESS);
+           },
            icon: Icon(Icons.shopping_cart_sharp,color: Colors.white,size: 30,),
         ),
       ),
