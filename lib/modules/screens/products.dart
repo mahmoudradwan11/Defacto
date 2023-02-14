@@ -47,6 +47,7 @@ class ProductsScreen extends StatelessWidget {
                       child: IconButton(
                           onPressed: () {
                             navigateTo(context, const NotificationScreen());
+                            cubit.getSpicalRecord('5599');
                           },
                           icon: const Icon(
                               Icons.notification_important_outlined)),

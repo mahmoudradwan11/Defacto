@@ -76,7 +76,7 @@ class DefactoCubit extends Cubit<DefactoStates> {
   [
     ProductsScreen(),
     const Favorite(),
-    const Cart(),
+    Cart(),
     const Profile(),
   ];
   List<BottomNavigationBarItem>items =const
@@ -108,6 +108,7 @@ class DefactoCubit extends Cubit<DefactoStates> {
   Database? database;
   List<Map> cart = [];
   List<Map> favorites = [];
+  List<Map> searchRecord  =[];
   void createDatabase() {
     openDatabase('Defacto.db', version: 2, onCreate: (database, version) {
       print('DataBase Created');
@@ -149,6 +150,19 @@ class DefactoCubit extends Cubit<DefactoStates> {
     }
     emit(MunsCounter());
  }
+ void getSpicalRecord(String search)async{
+    searchRecord = [];
+    database!.rawQuery('SELECT * FROM Cart WHERE price = "$search"').then((value){
+      value.forEach((element) {
+        searchRecord.add(element);
+      });
+      print("Search record  = $searchRecord");
+      emit(SearchDataState());
+    }).catchError((error){
+      print('Error occur no data for search');
+      emit(ErrorSearchDataState());
+    });
+ }
   Future<void> insertCart(
       { required String name,
         required String price,
@@ -183,7 +197,7 @@ class DefactoCubit extends Cubit<DefactoStates> {
       emit(ErrorCartState());
     });
   }
-
+  
   void deleteCartData({required int id}) async {
     await database!
         .rawDelete('DELETE FROM Cart WHERE id= ?', [id]).then((value) {

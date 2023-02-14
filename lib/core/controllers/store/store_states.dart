@@ -14,6 +14,8 @@ class GetCateData extends DefactoStates{}
 class GetErrorCateData extends DefactoStates{}
 class CreateDatabaseState extends DefactoStates {}
 class ErrorCreateDatabaseState extends DefactoStates {}
+class SearchDataState extends DefactoStates {}
+class ErrorSearchDataState extends DefactoStates {}
 class InsertCartState extends DefactoStates {}
 class ErrorInsertCartState extends DefactoStates {}
 class GetCartState extends DefactoStates {}
