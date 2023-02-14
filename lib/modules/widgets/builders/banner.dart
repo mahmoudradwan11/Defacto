@@ -4,13 +4,10 @@ import 'package:flutter/cupertino.dart';
 
 Widget buildBanner(HomeModel homeModel)=>CarouselSlider(
   items: homeModel.data!.banners!.map((e) =>
-      Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Image(
-          image: NetworkImage(e.image!),
-          width: double.infinity,
-          fit: BoxFit.cover,
-        ),
+      Image(
+        image: NetworkImage(e.image!),
+        width: double.infinity,
+        fit: BoxFit.cover,
       ),
   ).toList(),
   options: CarouselOptions(

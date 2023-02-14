@@ -14,7 +14,6 @@ import 'core/controllers/observer.dart';
 import 'core/network/remote/constants.dart';
 import 'modules/screens/home.dart';
 import 'modules/screens/login.dart';
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   DioHelperStore.init();

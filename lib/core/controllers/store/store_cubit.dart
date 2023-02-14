@@ -56,6 +56,7 @@ class DefactoCubit extends Cubit<DefactoStates> {
     });
   }
   int currentIndex = 0;
+  int counter = 1;
   void changeIndex(int index) {
     currentIndex = index;
     emit(ChangeScreenIndex());
@@ -112,7 +113,7 @@ class DefactoCubit extends Cubit<DefactoStates> {
       print('DataBase Created');
       database
           .execute(
-          'create table Cart(id INTEGER PRIMARY KEY,name TEXT ,price TEXT,image TEXT)')
+          'create table Cart(id INTEGER PRIMARY KEY,name TEXT ,price TEXT,image TEXT,counter INT)')
           .then((value) {
         print('Table 1 Created');
       }).catchError((error) {
@@ -137,15 +138,27 @@ class DefactoCubit extends Cubit<DefactoStates> {
       emit(ErrorCreateDatabaseState());
     });
   }
-
+ void addCounter(){
+    counter++;
+    emit(AddCounter());
+ }
+ void munsCounter(){
+    counter--;
+    if(counter==0){
+      counter = 1;
+    }
+    emit(MunsCounter());
+ }
   Future<void> insertCart(
       { required String name,
         required String price,
-        required String image}) async {
+        required String image,
+        required int counter,
+      }) async {
     database!.transaction((txn) {
       return txn
           .rawInsert(
-          'INSERT INTO Cart(name,price,image) VALUES("$name","$price","$image")')
+          'INSERT INTO Cart(name,price,image,counter) VALUES("$name","$price","$image","$counter")')
           .then((value) {
         print('$value Inserted Successfully');
         emit(InsertCartState());
