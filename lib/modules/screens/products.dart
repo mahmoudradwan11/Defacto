@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'notefication.dart';
+import 'package:badges/badges.dart' as badges;
 
 class ProductsScreen extends StatelessWidget {
   var searchController = TextEditingController();
@@ -48,8 +49,11 @@ class ProductsScreen extends StatelessWidget {
                           onPressed: () {
                             navigateTo(context, const NotificationScreen());
                           },
-                          icon: const Icon(
-                              Icons.notification_important_outlined)),
+                          icon: badges.Badge(
+                            badgeContent: Text('${cubit.notificationModel!.data!.data!.length}'),
+                            child: const Icon(Icons.notification_important_outlined),
+                          )
+                      ),
                     )
                   ],
                 ),

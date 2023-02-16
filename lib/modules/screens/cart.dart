@@ -44,7 +44,7 @@ class Cart extends StatelessWidget {
                                 Icons.search_outlined,
                                 color: Colors.black,
                               )),
-                          onSubmitted:(value){
+                          onChanged:(value){
                             cubit.getSpecialRecord(value);
                           },
                         ),
