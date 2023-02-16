@@ -43,7 +43,8 @@ class Cart extends StatelessWidget {
                               prefixIcon: Icon(
                                 Icons.search_outlined,
                                 color: Colors.black,
-                              )),
+                              )
+                          ),
                           onChanged:(value){
                             cubit.getSpecialRecord(value);
                           },

@@ -1,7 +1,5 @@
 import 'package:defacto/core/controllers/store/store_cubit.dart';
 import 'package:defacto/core/controllers/store/store_states.dart';
-import 'package:defacto/modules/screens/notefication.dart';
-import 'package:defacto/modules/widgets/funtions/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
