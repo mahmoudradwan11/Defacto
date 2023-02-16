@@ -9,7 +9,7 @@ Widget buildCartItem(Map model, context) => Dismissible(
   onDismissed:(direction){
     DefactoCubit.get(context).deleteCartData(id: model['id']);
   },
-  child:   Padding(
+  child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
           color: Colors.grey[300],
@@ -28,7 +28,7 @@ Widget buildCartItem(Map model, context) => Dismissible(
               ),
               Expanded(
                 child: Container(
-                  height: 100,
+                  height: 107,
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
                     child: Column(
@@ -45,11 +45,27 @@ Widget buildCartItem(Map model, context) => Dismissible(
                         const SizedBox(
                           height: 10,
                         ),
-                        Text(
-                          '${model['price']}',
-                          style: const TextStyle(
-                              color: Colors.black, fontWeight: FontWeight.w500),
+                        Row(
+                          children: [
+                            Text(
+                              '${model['price']}',
+                              style: const TextStyle(
+                                  color: Colors.black, fontWeight: FontWeight.w500),
+                            ),
+                            Spacer(),
+                            Row(
+                              children: [
+                                const Text('Count : '),
+                                Text(
+                                  '${model['counter']}',
+                                  style: const TextStyle(
+                                    color: Colors.black, fontWeight: FontWeight.w500,),
+                                ),
+                              ],
+                            ),
+                          ],
                         ),
+
                       ],
                     ),
                   ),

@@ -39,14 +39,13 @@ class Cart extends StatelessWidget {
                           controller: searchController,
                           decoration: const InputDecoration(
                               border: InputBorder.none,
-                              hintText: 'Search By Price',
+                              hintText: 'Search By Name',
                               prefixIcon: Icon(
                                 Icons.search_outlined,
                                 color: Colors.black,
                               )),
-                          onSubmitted: (value) {
-                            cubit.getSpicalRecord(value);
-                            //navigateTo(context,const SearchScreen());
+                          onSubmitted:(value){
+                            cubit.getSpecialRecord(value);
                           },
                         ),
                       ),

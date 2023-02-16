@@ -150,9 +150,9 @@ class DefactoCubit extends Cubit<DefactoStates> {
     }
     emit(MunsCounter());
  }
- void getSpicalRecord(String search)async{
+ void getSpecialRecord(String search)async{
     searchRecord = [];
-    database!.rawQuery('SELECT * FROM Cart WHERE price = "$search"').then((value){
+    database!.rawQuery('SELECT * FROM Cart WHERE name LIKE "%$search%"').then((value){
       value.forEach((element) {
         searchRecord.add(element);
       });
@@ -246,5 +246,14 @@ class DefactoCubit extends Cubit<DefactoStates> {
       getFavoriteData(database);
       emit(DeleteFavoriteDataState());
     });
+  }
+  bool more = false;
+  void changeMore(){
+    more = true;
+    emit(ChangeMoreState());
+  }
+  void changeMoreLess(){
+    more = false;
+    emit(ChangeMoreState());
   }
 }
