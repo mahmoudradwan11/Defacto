@@ -50,7 +50,22 @@ class ProductsScreen extends StatelessWidget {
                             navigateTo(context, const NotificationScreen());
                           },
                           icon: badges.Badge(
-                            badgeContent: Text('${cubit.notificationModel!.data!.data!.length}'),
+                            badgeAnimation:const badges.BadgeAnimation.slide(
+                              animationDuration: Duration(seconds: 1),
+                              colorChangeAnimationDuration: Duration(seconds: 1),
+                              loopAnimation: false,
+                              curve: Curves.fastOutSlowIn,
+                              colorChangeAnimationCurve: Curves.easeInCubic,
+                            ),
+                            position: badges.BadgePosition.topEnd(top: -15, end: -12),
+                            badgeStyle: badges.BadgeStyle(
+                              padding: const EdgeInsets.all(3),
+                              borderRadius: BorderRadius.circular(4),
+                              badgeColor: Colors.red,
+                            ),
+                            badgeContent: Text('${cubit.notificationModel!.data!.data!.length}',style: const TextStyle(
+                              color: Colors.white
+                            ),),
                             child: const Icon(Icons.notification_important_outlined),
                           )
                       ),

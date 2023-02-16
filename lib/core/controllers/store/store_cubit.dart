@@ -10,7 +10,6 @@ import 'package:defacto/modules/screens/products.dart';
 import 'package:defacto/modules/screens/profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DefactoCubit extends Cubit<DefactoStates> {
@@ -78,32 +77,6 @@ class DefactoCubit extends Cubit<DefactoStates> {
     const Favorite(),
     Cart(),
     const Profile(),
-  ];
-  List<BottomNavigationBarItem>items =const
-  [
-     BottomNavigationBarItem(
-      icon:FaIcon(
-          FontAwesomeIcons.house
-      ),
-      label:'Home',
-    ),
-     BottomNavigationBarItem(
-      icon:Icon(Icons.favorite_border
-      ),
-      label:'Favorite',
-    ),
-     BottomNavigationBarItem(
-      icon:Icon(
-        Icons.add_shopping_cart,
-      ),
-      label:'Cart',
-    ),
-     BottomNavigationBarItem(
-      icon:Icon(
-        Icons.person
-      ),
-      label:'Profile',
-    ),
   ];
   Database? database;
   List<Map> cart = [];
