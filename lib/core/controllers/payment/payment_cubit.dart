@@ -16,7 +16,7 @@ class PaymentCubit extends Cubit<PaymentStates> {
         data: {"api_key": ApiConstant.paymentApiKey}).then((value) {
       paymentAuth = PaymentAuth.fromJson(value.data);
       authToken = paymentAuth!.token;
-      print('The  Auth token is = $authToken');
+      print('The Auth token is = $authToken');
       emit(PaymentAuthSuccessState());
       authToken = paymentAuth!.token;
     }).catchError((error) {
