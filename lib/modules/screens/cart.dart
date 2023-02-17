@@ -61,7 +61,7 @@ class Cart extends StatelessWidget {
                     ),),
                   ),
                   if(cubit.searchRecord.isEmpty)
-                    Center(child: SvgPicture.asset('images/bro.svg')),
+                    Center(child: SvgPicture.asset('images/search.svg')),
                   ListView.separated(
                     physics: const NeverScrollableScrollPhysics(),
                       shrinkWrap: true,
