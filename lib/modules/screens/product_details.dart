@@ -379,7 +379,7 @@ class ProductDetails extends StatelessWidget {
                         ],
                       ),
                       function: () {
-                        navigateTo(context, const PaymentBasic());
+                        navigateTo(context, PaymentBasic(price: model.price,));
                       },
                       backgroundColor: Colors.black,
                       borderColor: Colors.white,

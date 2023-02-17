@@ -10,7 +10,6 @@ import 'package:defacto/modules/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'core/controllers/observer.dart';
 import 'core/network/remote/constants.dart';
 import 'modules/screens/home.dart';
