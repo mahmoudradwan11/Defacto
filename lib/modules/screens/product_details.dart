@@ -407,6 +407,7 @@ class ProductDetails extends StatelessWidget {
                             counter: cubit.counter,
                             exit: true
                         );
+                        cubit.addSum(model.price);
                         showToast('Inserted',ToastStates.SUCCESS);
                       },
                       backgroundColor: Colors.white,

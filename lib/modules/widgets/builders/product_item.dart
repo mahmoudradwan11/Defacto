@@ -1,3 +1,4 @@
+import 'package:defacto/core/controllers/store/store_cubit.dart';
 import 'package:defacto/models/store_models/home_model.dart';
 import 'package:defacto/modules/screens/product_details.dart';
 import 'package:defacto/modules/widgets/funtions/navigator.dart';
@@ -38,10 +39,11 @@ Widget buildProductItem(Products products, context) => InkWell(
                       ),
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.all(5.0),
+                   const Padding(
+                    padding: const EdgeInsets.all(5.0),
                     child: Icon(
                       Icons.favorite,
+                      color:Colors.black
                     ),
                   )
                 ],

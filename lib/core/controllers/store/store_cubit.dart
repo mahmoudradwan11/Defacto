@@ -1,4 +1,5 @@
 import 'package:defacto/core/controllers/store/store_states.dart';
+import 'package:defacto/core/network/local/cache.dart';
 import 'package:defacto/core/network/remote/constants.dart';
 import 'package:defacto/core/network/remote/store_helper.dart';
 import 'package:defacto/models/store_models/cateogry.dart';
@@ -33,14 +34,12 @@ class DefactoCubit extends Cubit<DefactoStates> {
       print('BestSeller length = ${homeModel!.data!.popular!.length}');
       print('Exclusive length = ${homeModel!.data!.exclusive!.length}');
       print('ForYou length = ${homeModel!.data!.forYou!.length}');
-
       emit(GetProductData());
     }).catchError((error) {
       print(error.toString());
       emit(GetErrorProductData());
     });
   }
-
   List<Widget> categoryScreen = const [
     Electronic(),
     CoronaProducts(),
@@ -239,7 +238,6 @@ class DefactoCubit extends Cubit<DefactoStates> {
       emit(UserUpdateFailedState());
     });
   }
-
   CategoryModel? categoryModel;
   void getCategory() {
     DioHelperStore.getData(url: ApiConstant.CATEGORY).then((value) {
@@ -251,4 +249,18 @@ class DefactoCubit extends Cubit<DefactoStates> {
       emit(GetErrorCateData());
     });
   }
+  dynamic sum  = 0 ;
+  void addSum(dynamic price){
+    sumPrice = sumPrice +(price*counter);
+    CacheHelper.saveData(key:'Sum', value:sumPrice);
+    print('Sum = $sumPrice');
+    emit(AddSum());
+  }
+  void muins(dynamic price,int count){
+    sumPrice = sumPrice - (price*count);
+    CacheHelper.saveData(key:'Sum', value:sumPrice);
+    print('Sum = $sumPrice');
+    emit(MuinsSum());
+  }
+
 }

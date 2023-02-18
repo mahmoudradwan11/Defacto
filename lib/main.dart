@@ -21,6 +21,9 @@ void main() async {
   await CacheHelper.init();
   var onboarding = CacheHelper.getData(key: 'onBoarding');
   token = CacheHelper.getData(key: 'token');
+  sumPrice = CacheHelper.getData(key: 'Sum');
+  sumPrice ??= 0;
+  print('SumPrice =$sumPrice');
   print(token);
   print(onboarding);
   DioHelperPayment.initDio();

@@ -1,7 +1,12 @@
 import 'package:defacto/core/controllers/store/store_cubit.dart';
 import 'package:defacto/core/controllers/store/store_states.dart';
+import 'package:defacto/core/network/remote/constants.dart';
+import 'package:defacto/modules/screens/payment_basic.dart';
 import 'package:defacto/modules/widgets/builders/cart_item.dart';
+import 'package:defacto/modules/widgets/builders/defualt_botton.dart';
 import 'package:defacto/modules/widgets/builders/divider.dart';
+import 'package:defacto/modules/widgets/funtions/navigator.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -21,6 +26,93 @@ class Cart extends StatelessWidget {
             appBar: AppBar(
               centerTitle: true,
               title: const Text('Cart'),
+              actions: [
+                IconButton(
+                    onPressed: () {
+                      showCupertinoDialog(
+                          context: context,
+                          builder: (context) => Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10)),
+                                child: CupertinoAlertDialog(
+                                  title: const Text('Final Step'),
+                                  content: Container(
+                                    height: 200,
+                                    width: 100,
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(10)),
+                                    child: Column(
+                                      children: [
+                                        Row(
+                                          children: [
+                                            const Text('Number of items'),
+                                            Spacer(),
+                                            Text('${cubit.cart.length}')
+                                          ],
+                                        ),
+                                        const SizedBox(
+                                          height: 5,
+                                        ),
+                                        Row(
+                                          children: const [
+                                            Text('Delivery'),
+                                            Spacer(),
+                                            Text('0.75')
+                                          ],
+                                        ),
+                                        const SizedBox(
+                                          height: 5,
+                                        ),
+                                        Row(
+                                          children: [
+                                            const Text('Total'),
+                                            Spacer(),
+                                            Text('$sumPrice')
+                                          ],
+                                        ),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        DefaultButton(
+                                            borderColor: Colors.white,
+                                            backgroundColor: Colors.black,
+                                            buttonWidget: const Text(
+                                              'Confirm Order',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                            function: () {
+                                              navigateTo(
+                                                  context,
+                                                  PaymentBasic(
+                                                    price: sumPrice,
+                                                  ));
+                                            }),
+                                        const SizedBox(
+                                          height: 10,
+                                        ),
+                                        DefaultButton(
+                                            borderColor: Colors.black,
+                                            backgroundColor: Colors.white,
+                                            buttonWidget: const Text(
+                                              'Recheck',
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                              ),
+                                            ),
+                                            function: () {
+                                              Navigator.pop(context);
+                                            })
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ));
+                    },
+                    icon: const Icon(Icons.checklist_rtl_outlined))
+              ],
             ),
             body: SingleChildScrollView(
               child: Column(

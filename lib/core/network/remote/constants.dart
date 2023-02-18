@@ -26,3 +26,4 @@ var authToken;
 var token;
 var orderPaymentId;
 var finalToken;
+dynamic sumPrice = 0;
