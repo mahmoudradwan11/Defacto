@@ -1,5 +1,6 @@
 import 'package:defacto/core/controllers/store/store_cubit.dart';
 import 'package:defacto/modules/widgets/builders/diraction.dart';
+import 'package:defacto/modules/widgets/funtions/toast.dart';
 import 'package:flutter/material.dart';
 
 Widget buildCartItem(Map model, context) => Dismissible(
@@ -8,6 +9,7 @@ Widget buildCartItem(Map model, context) => Dismissible(
   background: buildDirectionalDismess(),
   onDismissed:(direction){
     DefactoCubit.get(context).deleteCartData(id: model['id']);
+    showToast('Deleted', ToastStates.ERROR);
   },
   child: Padding(
         padding: const EdgeInsets.all(8.0),

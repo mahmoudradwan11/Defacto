@@ -5,7 +5,6 @@ import 'package:defacto/modules/widgets/builders/divider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 class Cart extends StatelessWidget {
   var searchController  = TextEditingController();
    Cart({Key? key}) : super(key: key);
@@ -81,11 +80,12 @@ class Cart extends StatelessWidget {
                     physics:const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
                     itemBuilder:(context,index)=>buildCartItem(cart[index],context),
-                    separatorBuilder:(context,index)=>BuildDivider(),
+                    separatorBuilder:(context,index)=>const BuildDivider(),
                     itemCount: cart.length,
                   ),
                 ],
               ),
+
             ),
           );
         }

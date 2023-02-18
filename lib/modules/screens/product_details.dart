@@ -410,6 +410,7 @@ class ProductDetails extends StatelessWidget {
                             price: model.price!.toString(),
                             image: model.image!,
                             counter: cubit.counter);
+                        showToast('Inserted',ToastStates.SUCCESS);
                       },
                       backgroundColor: Colors.white,
                       borderColor: Colors.black,
