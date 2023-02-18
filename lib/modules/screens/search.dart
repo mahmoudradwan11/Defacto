@@ -19,32 +19,25 @@ class SearchScreen extends StatelessWidget {
             return Scaffold(
                 appBar: AppBar(
                   centerTitle: true,
-                  title: const Text(
-                      'Find Your Product'
-                  ),
+                  title: const Text('Find Your Product'),
                 ),
-                body: Center(
-                  child:SvgPicture.asset('images/bro.svg')
-                ));
+                body: Center(child: SvgPicture.asset('images/bro.svg')));
           } else {
             return Scaffold(
               appBar: AppBar(
                 centerTitle: true,
-                title: const Text(
-                    'Find Your Product'
-                ),
+                title: const Text('Find Your Product'),
               ),
               body: Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: ListView.separated(
-                    itemBuilder:(context,index)=>buildSearchItem(cubit.searchModel!.data!.data![index],context),
-                    separatorBuilder:(context,index)=>const BuildDivider(),
-                    itemCount:cubit.searchModel!.data!.data!.length
-                ),
+                    itemBuilder: (context, index) => buildSearchItem(
+                        cubit.searchModel!.data!.data![index], context),
+                    separatorBuilder: (context, index) => const BuildDivider(),
+                    itemCount: cubit.searchModel!.data!.data!.length),
               ),
             );
           }
-        }
-    );
+        });
   }
 }

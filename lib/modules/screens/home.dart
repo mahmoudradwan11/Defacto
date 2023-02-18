@@ -23,8 +23,8 @@ class Home extends StatelessWidget {
                   label: 'Home',
                 ),
                 const BottomNavigationBarItem(
-                  icon: Icon(Icons.favorite_border),
-                  label: 'Favorite',
+                  icon: Icon(Icons.category),
+                  label: 'Category',
                 ),
                 BottomNavigationBarItem(
                   icon: badges.Badge(

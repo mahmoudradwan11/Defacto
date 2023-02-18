@@ -8,15 +8,14 @@ class Profile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<DefactoCubit,DefactoStates>(
+    return BlocConsumer<DefactoCubit, DefactoStates>(
         listener: (context, state) {},
         builder: (context, state) {
           return const Scaffold(
-          body: Center(
-          child:Text('Profile'),
-          ),
+            body: Center(
+              child: Text('Profile'),
+            ),
           );
-    }
-    );
+        });
   }
 }

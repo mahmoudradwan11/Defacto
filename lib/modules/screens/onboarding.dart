@@ -20,17 +20,19 @@ class _OnBoardingState extends State<OnBoarding> {
     BoardingModel(
       image: 'images/amico.svg',
       title: 'Welcome',
-      body: 'We Have a 100k+ Products. Choose Your product from our E-commerce shop.',
+      body:
+          'We Have a 100k+ Products. Choose Your product from our E-commerce shop.',
     ),
     BoardingModel(
         image: 'images/amico1.svg',
         title: 'Easy & safe payment',
-        body: 'Easy Checkout 6 Safe Payment method. Trusted by our Customers from all over the world.'
-    ),
+        body:
+            'Easy Checkout 6 Safe Payment method. Trusted by our Customers from all over the world.'),
     BoardingModel(
       image: 'images/amico3.svg',
       title: 'Track your order',
-      body: 'Best Tracker has been Used For Track your order. You will know where your product is at the moment.',
+      body:
+          'Best Tracker has been Used For Track your order. You will know where your product is at the moment.',
     ),
   ];
   var boardController = PageController();
@@ -41,31 +43,32 @@ class _OnBoardingState extends State<OnBoarding> {
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
-        children:[
+        children: [
           Container(
             height: 450,
             child: PageView.builder(
-                  onPageChanged: (int index) {
-                    if (index == boarding.length - 1) {
-                      setState(() {
-                        isLast = true;
-                      });
-                    } else {
-                      setState(() {
-                        isLast = false;
-                      });
-                    }
-                  },
-                  physics: const BouncingScrollPhysics(),
-                  controller: boardController,
-                  itemBuilder: (context, index) =>builtBoardingItem(boarding[index]),
-                  itemCount: boarding.length,
-                ),
+              onPageChanged: (int index) {
+                if (index == boarding.length - 1) {
+                  setState(() {
+                    isLast = true;
+                  });
+                } else {
+                  setState(() {
+                    isLast = false;
+                  });
+                }
+              },
+              physics: const BouncingScrollPhysics(),
+              controller: boardController,
+              itemBuilder: (context, index) =>
+                  builtBoardingItem(boarding[index]),
+              itemCount: boarding.length,
+            ),
           ),
           SmoothPageIndicator(
               effect: ScrollingDotsEffect(
                 dotColor: Colors.grey[300]!,
-                activeDotColor:Colors.black,
+                activeDotColor: Colors.black,
                 dotHeight: 10,
                 dotWidth: 10,
                 // expansionFactor: 4,
@@ -77,81 +80,88 @@ class _OnBoardingState extends State<OnBoarding> {
             height: 20,
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 20,left: 20,right: 20),
+            padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
             child: DefaultButton(
-              radius: 10,
-              backgroundColor: Colors.black,
-                buttonWidget:const Text('Next',style: TextStyle(color: Colors.white),), function:(){
-              if (isLast) {
-                submit();
-              } else {
-                boardController.nextPage(
-                    duration: const Duration(
-                      milliseconds: 750,
-                    ),
-                    curve: Curves.fastLinearToSlowEaseIn);
-              }
-            }
-            ),
+                radius: 10,
+                backgroundColor: Colors.black,
+                buttonWidget: const Text(
+                  'Next',
+                  style: TextStyle(color: Colors.white),
+                ),
+                function: () {
+                  if (isLast) {
+                    submit();
+                  } else {
+                    boardController.nextPage(
+                        duration: const Duration(
+                          milliseconds: 750,
+                        ),
+                        curve: Curves.fastLinearToSlowEaseIn);
+                  }
+                }),
           ),
           const SizedBox(
             height: 10,
           ),
-          if(isLast!=true)
+          if (isLast != true)
             Padding(
-            padding: const EdgeInsets.only(left:20,right: 20,),
-            child: DefaultButton(
-                radius: 10,
-                backgroundColor: Colors.white,
-                buttonWidget:const Text('skip',style: TextStyle(color: Colors.black),),
-                function:(){
-                  submit();
-            }
-            ),
-          )
+              padding: const EdgeInsets.only(
+                left: 20,
+                right: 20,
+              ),
+              child: DefaultButton(
+                  radius: 10,
+                  backgroundColor: Colors.white,
+                  buttonWidget: const Text(
+                    'skip',
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  function: () {
+                    submit();
+                  }),
+            )
         ],
       ),
     );
   }
 
-  void submit()
-  {
-    CacheHelper.saveData(key:'onBoarding', value:true).then((value){
-      if(value)
-      {
-        navigateAndFinish(context,const LoginLayout());
+  void submit() {
+    CacheHelper.saveData(key: 'onBoarding', value: true).then((value) {
+      if (value) {
+        navigateAndFinish(context, const LoginLayout());
       }
     });
   }
 
-  Widget builtBoardingItem(BoardingModel model) =>
-      Column(
+  Widget builtBoardingItem(BoardingModel model) => Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-           Container(
-             height: 250,
-               width: double.infinity,
-               child: SvgPicture.asset(model.image)),
-           const SizedBox(
-             height: 30,
-           ),
-           Text(
-            model.title,
-            style:const TextStyle(fontSize: 25.0, fontWeight: FontWeight.w500,color: Colors.black),
+          Container(
+              height: 250,
+              width: double.infinity,
+              child: SvgPicture.asset(model.image)),
+          const SizedBox(
+            height: 30,
           ),
-           Padding(
-             padding: const EdgeInsets.all(25.0),
-             child: Text(
+          Text(
+            model.title,
+            style: const TextStyle(
+                fontSize: 25.0,
+                fontWeight: FontWeight.w500,
+                color: Colors.black),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(25.0),
+            child: Text(
               model.body,
-              textAlign:TextAlign.center,
+              textAlign: TextAlign.center,
               style: const TextStyle(
                   fontSize: 15.0,
                   fontWeight: FontWeight.bold,
-                  color: Colors.grey
-              ),
+                  color: Colors.grey),
+            ),
           ),
-           ),
         ],
       );
 }

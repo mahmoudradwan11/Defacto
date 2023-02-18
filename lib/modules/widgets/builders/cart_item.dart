@@ -4,14 +4,14 @@ import 'package:defacto/modules/widgets/funtions/toast.dart';
 import 'package:flutter/material.dart';
 
 Widget buildCartItem(Map model, context) => Dismissible(
-  key: Key(model['id'].toString()),
-  direction: DismissDirection.endToStart,
-  background: buildDirectionalDismess(),
-  onDismissed:(direction){
-    DefactoCubit.get(context).deleteCartData(id: model['id']);
-    showToast('Deleted', ToastStates.ERROR);
-  },
-  child: Padding(
+      key: Key(model['id'].toString()),
+      direction: DismissDirection.endToStart,
+      background: buildDirectionalDismess(),
+      onDismissed: (direction) {
+        DefactoCubit.get(context).deleteCartData(id: model['id']);
+        showToast('Deleted', ToastStates.ERROR);
+      },
+      child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
           color: Colors.grey[300],
@@ -52,7 +52,8 @@ Widget buildCartItem(Map model, context) => Dismissible(
                             Text(
                               '${model['price']}',
                               style: const TextStyle(
-                                  color: Colors.black, fontWeight: FontWeight.w500),
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w500),
                             ),
                             Spacer(),
                             Row(
@@ -61,21 +62,21 @@ Widget buildCartItem(Map model, context) => Dismissible(
                                 Text(
                                   '${model['counter']}',
                                   style: const TextStyle(
-                                    color: Colors.black, fontWeight: FontWeight.w500,),
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w500,
+                                  ),
                                 ),
                               ],
                             ),
                           ],
                         ),
-
                       ],
                     ),
                   ),
                 ),
               ),
-
             ],
           ),
         ),
       ),
-);
+    );

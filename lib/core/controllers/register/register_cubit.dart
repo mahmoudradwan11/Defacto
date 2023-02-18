@@ -19,29 +19,25 @@ class RegisterCubit extends Cubit<RegisterStates> {
     required String email,
     required String password,
     required String phone,
-  })
-  {
+  }) {
     emit(RegisterLoadingState());
 
     DioHelperStore.postData(
       url: ApiConstant.REGISTER,
-      data:
-      {
+      data: {
         'name': name,
         'email': email,
         'password': password,
         'phone': phone,
       },
-    ).then((value)
-    {
+    ).then((value) {
       print(value.data);
       loginModel = LoginModel.fromJson(value.data);
-      if(loginModel!.message!='Registration done successfully') {
+      if (loginModel!.message != 'Registration done successfully') {
         showToast(loginModel!.message!, ToastStates.ERROR);
       }
       emit(RegisterSuccessState(loginModel!));
-    }).catchError((error)
-    {
+    }).catchError((error) {
       print(error.toString());
       emit(RegisterErrorState(error.toString()));
     });
@@ -50,10 +46,10 @@ class RegisterCubit extends Cubit<RegisterStates> {
   IconData suffix = Icons.visibility_outlined;
   bool isPassword = true;
 
-  void changePasswordVisibility()
-  {
+  void changePasswordVisibility() {
     isPassword = !isPassword;
-    suffix = isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined ;
+    suffix =
+        isPassword ? Icons.visibility_outlined : Icons.visibility_off_outlined;
 
     emit(RegisterChangePasswordVisibilityState());
   }

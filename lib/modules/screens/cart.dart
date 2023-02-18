@@ -5,9 +5,10 @@ import 'package:defacto/modules/widgets/builders/divider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
 class Cart extends StatelessWidget {
-  var searchController  = TextEditingController();
-   Cart({Key? key}) : super(key: key);
+  var searchController = TextEditingController();
+  Cart({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<DefactoCubit, DefactoStates>(
@@ -16,7 +17,7 @@ class Cart extends StatelessWidget {
           var cubit = DefactoCubit.get(context);
           var cart = cubit.cart;
           var search = cubit.searchRecord;
-          return  Scaffold(
+          return Scaffold(
             appBar: AppBar(
               centerTitle: true,
               title: const Text('Cart'),
@@ -42,9 +43,8 @@ class Cart extends StatelessWidget {
                               prefixIcon: Icon(
                                 Icons.search_outlined,
                                 color: Colors.black,
-                              )
-                          ),
-                          onChanged:(value){
+                              )),
+                          onChanged: (value) {
                             cubit.getSpecialRecord(value);
                           },
                         ),
@@ -52,43 +52,47 @@ class Cart extends StatelessWidget {
                     ),
                   ),
                   const Padding(
-                    padding:  EdgeInsets.all(8.0),
-                    child:  Text('Search Result',style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold
-                    ),),
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      'Search Result',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
-                  if(cubit.searchRecord.isEmpty)
+                  if (cubit.searchRecord.isEmpty)
                     Center(child: SvgPicture.asset('images/search.svg')),
                   ListView.separated(
                     physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      itemBuilder:(context,index)=>buildCartItem(search[index],context),
-                      separatorBuilder:(context,index)=>BuildDivider(),
-                      itemCount: search.length,
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) =>
+                        buildCartItem(search[index], context),
+                    separatorBuilder: (context, index) => const BuildDivider(),
+                    itemCount: search.length,
                   ),
                   const Padding(
-                    padding:  EdgeInsets.all(8.0),
-                    child:  Text('Added Items',style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold
-                    ),),
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      'Added Items',
+                      style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
                   ListView.separated(
-                    physics:const NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
-                    itemBuilder:(context,index)=>buildCartItem(cart[index],context),
-                    separatorBuilder:(context,index)=>const BuildDivider(),
+                    itemBuilder: (context, index) =>
+                        buildCartItem(cart[index], context),
+                    separatorBuilder: (context, index) => const BuildDivider(),
                     itemCount: cart.length,
                   ),
                 ],
               ),
-
             ),
           );
-        }
-    );
+        });
   }
 }

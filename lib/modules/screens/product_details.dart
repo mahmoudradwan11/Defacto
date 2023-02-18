@@ -52,15 +52,10 @@ class ProductDetails extends StatelessWidget {
                         right: 10,
                         child: IconButton(
                             onPressed: () {
-                              cubit.insertFavorite(
-                                  name: model.name,
-                                  price: model.price.toString(),
-                                  image: model.image);
-                              showToast('Added Favorite', ToastStates.SUCCESS);
                             },
                             icon: const Icon(
                               Icons.favorite_border,
-                              color: Colors.grey,
+                              color:Colors.grey,
                               size: 30,
                             )),
                       ),
@@ -409,7 +404,9 @@ class ProductDetails extends StatelessWidget {
                             name: model.name!,
                             price: model.price!.toString(),
                             image: model.image!,
-                            counter: cubit.counter);
+                            counter: cubit.counter,
+                            exit: true
+                        );
                         showToast('Inserted',ToastStates.SUCCESS);
                       },
                       backgroundColor: Colors.white,

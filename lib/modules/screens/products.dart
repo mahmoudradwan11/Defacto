@@ -126,7 +126,7 @@ class ProductsScreen extends StatelessWidget {
                             height: 200, child: buildBanner(cubit.homeModel!)),
                       ),
                       const Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding:  EdgeInsets.all(8.0),
                         child: Text('Offer of Today',style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold),),
                       ),
                       Padding(
@@ -147,7 +147,7 @@ class ProductsScreen extends StatelessWidget {
                         ),
                       ),
                       const Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Text('Suggested For you',style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold),),
                       ),
                       Padding(
@@ -168,7 +168,7 @@ class ProductsScreen extends StatelessWidget {
                         ),
                       ),
                       const Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding:  EdgeInsets.all(8.0),
                         child: Text('Best Seller ',style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold),),
                       ),
                       Padding(
@@ -189,7 +189,7 @@ class ProductsScreen extends StatelessWidget {
                         ),
                       ),
                       const Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding:  EdgeInsets.all(8.0),
                         child: Text('Exclusive',style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold),),
                       ),
                       Padding(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 var defaultColor = Colors.blue;
 ThemeData lightTheme = ThemeData(
   primarySwatch: defaultColor,
@@ -7,9 +8,10 @@ ThemeData lightTheme = ThemeData(
     backgroundColor: Colors.white,
     elevation: 0.0,
     titleTextStyle: TextStyle(
-        color: Colors.black,
-        fontSize: 20.0,
-        fontWeight: FontWeight.w500,),
+      color: Colors.black,
+      fontSize: 20.0,
+      fontWeight: FontWeight.w500,
+    ),
     iconTheme: IconThemeData(
       color: Colors.black,
     ),

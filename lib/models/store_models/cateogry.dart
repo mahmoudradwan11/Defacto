@@ -1,24 +1,28 @@
-class NotificationModel {
+class CategoryModel {
   bool? status;
+  String? message;
   Data? data;
 
-  NotificationModel({this.status, this.data});
+  CategoryModel({this.status, this.message, this.data});
 
-  NotificationModel.fromJson(Map<String, dynamic> json) {
+  CategoryModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
+    message = json['message'];
     data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
 }
 
 class Data {
   int? currentPage;
-  List<NotificationData>? data;
+  List<CateData>? data;
   String? firstPageUrl;
   int? from;
   int? lastPage;
   String? lastPageUrl;
+  String? nextPageUrl;
   String? path;
   int? perPage;
+  String? prevPageUrl;
   int? to;
   int? total;
 
@@ -29,40 +33,44 @@ class Data {
       this.from,
       this.lastPage,
       this.lastPageUrl,
+      this.nextPageUrl,
       this.path,
       this.perPage,
+      this.prevPageUrl,
       this.to,
       this.total});
 
   Data.fromJson(Map<String, dynamic> json) {
     currentPage = json['current_page'];
     if (json['data'] != null) {
-      data = <NotificationData>[];
+      data = <CateData>[];
       json['data'].forEach((v) {
-        data!.add(NotificationData.fromJson(v));
+        data!.add(CateData.fromJson(v));
       });
     }
     firstPageUrl = json['first_page_url'];
     from = json['from'];
     lastPage = json['last_page'];
     lastPageUrl = json['last_page_url'];
+    nextPageUrl = json['next_page_url'];
     path = json['path'];
     perPage = json['per_page'];
+    prevPageUrl = json['prev_page_url'];
     to = json['to'];
     total = json['total'];
   }
 }
 
-class NotificationData {
+class CateData {
   int? id;
-  String? title;
-  String? message;
+  String? name;
+  String? image;
 
-  NotificationData({this.id, this.title, this.message});
+  CateData({this.id, this.name, this.image});
 
-  NotificationData.fromJson(Map<String, dynamic> json) {
+  CateData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    title = json['title'];
-    message = json['message'];
+    name = json['name'];
+    image = json['image'];
   }
 }

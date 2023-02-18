@@ -5,7 +5,7 @@ Widget defaultFieldForm({
   required TextInputType keyboard,
   required var valid,
   String? label,
-  String?hint,
+  String? hint,
   IconData? prefix,
   //IconData? suffix,
   bool show = true,
@@ -25,20 +25,18 @@ Widget defaultFieldForm({
         hintStyle: hintStyle,
         labelText: label,
         labelStyle: labelStyle,
-        border:const OutlineInputBorder(
-          borderSide: BorderSide.none
-        ),
-          // borderRadius: BorderRadius.circular(30
+        border: const OutlineInputBorder(borderSide: BorderSide.none),
+        // borderRadius: BorderRadius.circular(30
         prefixIcon: Icon(
           prefix,
           color: Colors.black,
         ),
         suffixIcon: suffix != null
             ? IconButton(
-          icon: Icon(suffix),
-          onPressed: suffixPress,
-          color: Colors.black,
-        )
+                icon: Icon(suffix),
+                onPressed: suffixPress,
+                color: Colors.black,
+              )
             : null,
       ),
       keyboardType: keyboard,

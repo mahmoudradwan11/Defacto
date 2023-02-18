@@ -9,7 +9,6 @@ class SearchModel {
     message = json['message'];
     data = json['data'] != null ? Data.fromJson(json['data']) : null;
   }
-
 }
 
 class Data {
@@ -28,17 +27,17 @@ class Data {
 
   Data(
       {this.currentPage,
-        this.data,
-        this.firstPageUrl,
-        this.from,
-        this.lastPage,
-        this.lastPageUrl,
-        this.nextPageUrl,
-        this.path,
-        this.perPage,
-        this.prevPageUrl,
-        this.to,
-        this.total});
+      this.data,
+      this.firstPageUrl,
+      this.from,
+      this.lastPage,
+      this.lastPageUrl,
+      this.nextPageUrl,
+      this.path,
+      this.perPage,
+      this.prevPageUrl,
+      this.to,
+      this.total});
 
   Data.fromJson(Map<String, dynamic> json) {
     currentPage = json['current_page'];
@@ -74,13 +73,13 @@ class SearchData {
 
   SearchData(
       {this.id,
-        this.price,
-        this.image,
-        this.name,
-        this.description,
-        this.images,
-        this.inFavorites,
-        this.inCart});
+      this.price,
+      this.image,
+      this.name,
+      this.description,
+      this.images,
+      this.inFavorites,
+      this.inCart});
 
   SearchData.fromJson(Map<String, dynamic> json) {
     id = json['id'];

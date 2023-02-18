@@ -6,6 +6,7 @@ import 'package:defacto/models/payment_models/payment_finalToken.dart';
 import 'package:defacto/models/payment_models/payment_order.dart';
 import 'package:defacto/modules/widgets/funtions/toast.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
 class PaymentCubit extends Cubit<PaymentStates> {
   PaymentCubit() : super(InitialState());
   static PaymentCubit get(context) => BlocProvider.of(context);
@@ -25,6 +26,7 @@ class PaymentCubit extends Cubit<PaymentStates> {
       emit(PaymentAuthErrorState());
     });
   }
+
   OrderId? orderId;
   Future<void> getOrderId({
     required String firstName,
@@ -43,40 +45,40 @@ class PaymentCubit extends Cubit<PaymentStates> {
         "currency": "EGP",
         "items": [],
       },
-    ).then((value){
-     orderId = OrderId.fromJson(value.data);
-     orderPaymentId = orderId!.id.toString();
+    ).then((value) {
+      orderId = OrderId.fromJson(value.data);
+      orderPaymentId = orderId!.id.toString();
       print('OrderId = $orderPaymentId');
       getPaymentRequest(
           firstName: firstName,
           lastName: lastName,
           email: email,
           price: price,
-          phone: phone
-      );
+          phone: phone);
       emit(GetOrderIdSuccess());
-    }).catchError((error){
+    }).catchError((error) {
       print('error occur ${error.toString()}');
       emit(GetOrderIdError());
     });
   }
+
   PaymentFinal? paymentFinal;
-  Future<void>getPaymentRequest({
+  Future<void> getPaymentRequest({
     required String firstName,
     required String lastName,
     required String email,
     required String price,
     required String phone,
-  })async{
+  }) async {
     emit(GetPaymentRequestLoading());
-    DioHelperPayment.postData(url:ApiConstant.getPaymentKey,data: {
+    DioHelperPayment.postData(url: ApiConstant.getPaymentKey, data: {
       "auth_token": authToken,
       "amount_cents": price,
       "expiration": 3600,
-      "order_id":orderPaymentId,
+      "order_id": orderPaymentId,
       "billing_data": {
         "apartment": "NA",
-        "email":email,
+        "email": email,
         "floor": "NA",
         "first_name": firstName,
         "street": "NA",
@@ -91,13 +93,13 @@ class PaymentCubit extends Cubit<PaymentStates> {
       },
       "currency": "EGP",
       "integration_id": ApiConstant.idCard,
-    }).then((value){
+    }).then((value) {
       paymentFinal = PaymentFinal.fromJson(value.data);
       finalToken = paymentFinal!.token;
       print('Final Token = $finalToken}');
-      showToast(orderPaymentId,ToastStates.SUCCESS);
+      showToast(orderPaymentId, ToastStates.SUCCESS);
       emit(GetPaymentRequestSuccess());
-    }).catchError((error){
+    }).catchError((error) {
       print(error.toString());
       emit(GetPaymentRequestError());
     });

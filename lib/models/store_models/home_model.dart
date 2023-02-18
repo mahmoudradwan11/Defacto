@@ -1,4 +1,4 @@
-class HomeModel{
+class HomeModel {
   bool? status;
   String? message;
   Data? data;
@@ -16,8 +16,7 @@ class Data {
   List<Products>? products;
   List<Products>? popular;
   List<Products>? exclusive;
-  List<Products>?forYou;
-  List<Products>?daily;
+  List<Products>? forYou;
   String? ad;
   Data({this.banners, this.products});
 
@@ -32,15 +31,15 @@ class Data {
       products = <Products>[];
       popular = <Products>[];
       exclusive = <Products>[];
-      forYou =<Products>[];
-      json['products'].forEach((v){
-        if(v['id']<57){
+      forYou = <Products>[];
+      json['products'].forEach((v) {
+        if (v['id'] < 57) {
           popular!.add(Products.fromJson(v));
-        }else if(v['id']<83){
+        } else if (v['id'] < 83) {
           exclusive!.add(Products.fromJson(v));
-        }else if(v['id']<88){
+        } else if (v['id'] < 88) {
           forYou!.add(Products.fromJson(v));
-        }else{
+        } else {
           products!.add(Products.fromJson(v));
         }
       });
@@ -48,6 +47,7 @@ class Data {
     ad = json['ad'];
   }
 }
+
 class Banners {
   int? id;
   String? image;
@@ -58,7 +58,7 @@ class Banners {
   }
 }
 
-class Products{
+class Products {
   dynamic id;
   dynamic price;
   dynamic oldPrice;
@@ -72,15 +72,15 @@ class Products{
 
   Products(
       {this.id,
-        this.price,
-        this.oldPrice,
-        this.discount,
-        this.image,
-        this.name,
-        this.description,
-        this.images,
-        this.inFavorites,
-        this.inCart});
+      this.price,
+      this.oldPrice,
+      this.discount,
+      this.image,
+      this.name,
+      this.description,
+      this.images,
+      this.inFavorites,
+      this.inCart});
 
   Products.fromJson(Map<String, dynamic> json) {
     id = json['id'];

@@ -14,6 +14,7 @@ import 'core/controllers/observer.dart';
 import 'core/network/remote/constants.dart';
 import 'modules/screens/home.dart';
 import 'modules/screens/login.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   DioHelperStore.init();
@@ -52,15 +53,14 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-            create: (context) => DefactoCubit()
-              ..getHomeData()
-              ..getNotification()
-              ..createDatabase(),
+          create: (context) => DefactoCubit()
+            ..getHomeData()
+            ..getNotification()
+            ..getUserData()
+            ..getCategory()
+            ..createDatabase(),
         ),
-        BlocProvider(
-            create: (context) => PaymentCubit()
-              ..getAuthToken()
-        ),
+        BlocProvider(create: (context) => PaymentCubit()..getAuthToken()),
       ],
       child: BlocConsumer<DefactoCubit, DefactoStates>(
           listener: (context, state) {},

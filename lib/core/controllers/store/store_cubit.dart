@@ -1,23 +1,29 @@
 import 'package:defacto/core/controllers/store/store_states.dart';
 import 'package:defacto/core/network/remote/constants.dart';
 import 'package:defacto/core/network/remote/store_helper.dart';
+import 'package:defacto/models/store_models/cateogry.dart';
 import 'package:defacto/models/store_models/home_model.dart';
+import 'package:defacto/models/store_models/login_model.dart';
 import 'package:defacto/models/store_models/notification.dart';
 import 'package:defacto/models/store_models/search_model.dart';
 import 'package:defacto/modules/screens/cart.dart';
-import 'package:defacto/modules/screens/favorite.dart';
+import 'package:defacto/modules/screens/category.dart';
+import 'package:defacto/modules/screens/clothes_products.dart';
+import 'package:defacto/modules/screens/corona_Products.dart';
+import 'package:defacto/modules/screens/electronic_products.dart';
 import 'package:defacto/modules/screens/products.dart';
 import 'package:defacto/modules/screens/profile.dart';
+import 'package:defacto/modules/screens/sports_products.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DefactoCubit extends Cubit<DefactoStates> {
-  DefactoCubit() :super(InitialState());
+  DefactoCubit() : super(InitialState());
   static DefactoCubit get(context) => BlocProvider.of(context);
   HomeModel? homeModel;
   void getHomeData() {
-    DioHelperStore.getData(url:ApiConstant.HOME,token: token).then((value){
+    DioHelperStore.getData(url: ApiConstant.HOME, token: token).then((value) {
       homeModel = HomeModel.fromJson(value.data);
       print('Price = ${homeModel!.data!.products![0].price}');
       print('Image = ${homeModel!.data!.products![0].images![0]}');
@@ -29,81 +35,80 @@ class DefactoCubit extends Cubit<DefactoStates> {
       print('ForYou length = ${homeModel!.data!.forYou!.length}');
 
       emit(GetProductData());
-    }).catchError((error){
+    }).catchError((error) {
       print(error.toString());
       emit(GetErrorProductData());
     });
   }
+
+  List<Widget> categoryScreen = const [
+    Electronic(),
+    CoronaProducts(),
+    SportsProducts(),
+    ClothesProducts(),
+    ClothesProducts(),
+  ];
   SearchModel? searchModel;
   void search(String text) {
     emit(SearchLoadingState());
     DioHelperStore.postData(
-      url:ApiConstant.SEARCH,
+      url: ApiConstant.SEARCH,
       token: token,
       data: {
         'text': text,
       },
-    ).then((value)
-    {
+    ).then((value) {
       searchModel = SearchModel.fromJson(value.data);
       print('search = ${searchModel!.data!.data![0].name}');
       emit(SearchSuccessState());
-    }).catchError((error)
-    {
+    }).catchError((error) {
       print("error occur:${error.toString()}");
       emit(SearchErrorState());
     });
   }
+
   int currentIndex = 0;
   int counter = 1;
   void changeIndex(int index) {
     currentIndex = index;
     emit(ChangeScreenIndex());
   }
+
   NotificationModel? notificationModel;
-  void getNotification(){
-    DioHelperStore.getData(url:ApiConstant.NOTIFICATION,token: token).then((value){
-      notificationModel  =NotificationModel.fromJson(value.data);
+  void getNotification() {
+    DioHelperStore.getData(url: ApiConstant.NOTIFICATION, token: token)
+        .then((value) {
+      notificationModel = NotificationModel.fromJson(value.data);
       print('not = ${notificationModel!.data!.data![0].title}');
       emit(GetNotification());
-    }).catchError((error){
+    }).catchError((error) {
       print(error.toString());
       emit(ErrorGetNotification());
     });
   }
-  List<Widget> screens =
-  [
+
+  List<Widget> screens = [
     ProductsScreen(),
-    const Favorite(),
+    const Category(),
     Cart(),
     const Profile(),
   ];
   Database? database;
   List<Map> cart = [];
-  List<Map> favorites = [];
-  List<Map> searchRecord  =[];
+  List<Map> searchRecord = [];
   void createDatabase() {
-    openDatabase('Defacto.db', version: 2, onCreate: (database, version) {
+    openDatabase('Defacto.db', version: 1, onCreate: (database, version) {
       print('DataBase Created');
       database
           .execute(
-          'create table Cart(id INTEGER PRIMARY KEY,name TEXT ,price TEXT,image TEXT,counter INT)')
+              'create table Cart(id INTEGER PRIMARY KEY,name TEXT ,price TEXT,image TEXT,counter INT,exit BOOL)')
           .then((value) {
         print('Table 1 Created');
       }).catchError((error) {
         print('Error occur : $error');
       });
-      database
-          .execute(
-          'create table Favorite(id INTEGER PRIMARY KEY,name TEXT ,price TEXT,image TEXT)')
-          .then((value) {
-        print('Table 2 Created');
-      }).catchError((error) {
-        print('Error occur : $error');
-      });
     }, onOpen: (database) {
       getCartData(database);
-      getFavoriteData(database);
       print('Database opened');
     }).then((value) {
       database = value;
@@ -112,40 +117,47 @@ class DefactoCubit extends Cubit<DefactoStates> {
       emit(ErrorCreateDatabaseState());
     });
   }
- void addCounter(){
+
+  void addCounter() {
     counter++;
     emit(AddCounter());
- }
- void munsCounter(){
+  }
+
+  void munsCounter() {
     counter--;
-    if(counter==0){
+    if (counter == 0) {
       counter = 1;
     }
     emit(MunsCounter());
- }
- void getSpecialRecord(String search)async{
+  }
+
+  void getSpecialRecord(String search) async {
     searchRecord = [];
-    database!.rawQuery('SELECT * FROM Cart WHERE name LIKE "%$search%"').then((value){
+    database!
+        .rawQuery('SELECT * FROM Cart WHERE name LIKE "%$search%"')
+        .then((value) {
       value.forEach((element) {
         searchRecord.add(element);
       });
       print("Search record  = $searchRecord");
       emit(SearchDataState());
-    }).catchError((error){
+    }).catchError((error) {
       print('Error occur no data for search');
       emit(ErrorSearchDataState());
     });
- }
-  Future<void> insertCart(
-      { required String name,
-        required String price,
-        required String image,
-        required int counter,
-      }) async {
+  }
+
+  Future<void> insertCart({
+    required String name,
+    required String price,
+    required String image,
+    required int counter,
+    required bool exit,
+  }) async {
     database!.transaction((txn) {
       return txn
           .rawInsert(
-          'INSERT INTO Cart(name,price,image,counter) VALUES("$name","$price","$image","$counter")')
+              'INSERT INTO Cart(name,price,image,counter,exit) VALUES("$name","$price","$image","$counter","$exit")')
           .then((value) {
         print('$value Inserted Successfully');
         emit(InsertCartState());
@@ -170,7 +182,7 @@ class DefactoCubit extends Cubit<DefactoStates> {
       emit(ErrorCartState());
     });
   }
-  
+
   void deleteCartData({required int id}) async {
     await database!
         .rawDelete('DELETE FROM Cart WHERE id= ?', [id]).then((value) {
@@ -179,54 +191,64 @@ class DefactoCubit extends Cubit<DefactoStates> {
     });
   }
 
-  Future<void> insertFavorite(
-      {required String name,
-        required String price,
-        required String image}) async {
-    database!.transaction((txn) {
-      return txn
-          .rawInsert(
-          'INSERT INTO Favorite(name,price,image) VALUES("$name","$price","$image")')
-          .then((value) {
-        print('$value Inserted Successfully');
-        emit(InsertFavoriteState());
-        getFavoriteData(database);
-        //print()
-      }).catchError((error) {
-        print('Error occur : $error');
-        emit(ErrorFavoriteInsertDataState());
-      });
-    });
-  }
-
-  void getFavoriteData(database) {
-    favorites = [];
-    database!.rawQuery('select * from Favorite').then((value) {
-      value.forEach((element) {
-        favorites.add(element);
-      });
-      print(favorites);
-      emit(GetFavoriteDataState());
-    }).catchError((error) {
-      print('Error occur no data');
-      emit(ErrorGetFavoriteDataState());
-    });
-  }
-
-  void deleteFavoriteData({required int id}) async {
-    await database!
-        .rawDelete('DELETE FROM Favorite WHERE id= ?', [id]).then((value) {
-      getFavoriteData(database);
-      emit(DeleteFavoriteDataState());
-    });
-  }
   bool more = false;
-  void changeMore(){
+  void changeMore() {
     more = true;
     emit(ChangeMoreState());
   }
-  void changeMoreLess(){
+
+  void changeMoreLess() {
     more = false;
     emit(ChangeMoreState());
+  }
+
+  LoginModel? userModel;
+  void getUserData() {
+    DioHelperStore.getData(
+      url: ApiConstant.PROFILE,
+      token: token,
+    ).then((value) {
+      userModel = LoginModel.fromJson(value.data);
+      print(userModel!.data!.name);
+      emit(UserDataSuccessState(userModel));
+    }).catchError((error) {
+      print(error.toString());
+      emit(UserDataFailedState());
+    });
+  }
+
+  void updateUserData({
+    required String name,
+    required String email,
+    required String phone,
+  }) {
+    DioHelperStore.putData(
+      url: ApiConstant.UPDATE_PROFILE,
+      token: token,
+      data: {
+        'name': name,
+        'email': email,
+        'phone': phone,
+      },
+    ).then((value) {
+      userModel = LoginModel.fromJson(value.data);
+      //printFullText(userModel!.data!.name!);
+      emit(UserUpdateSuccessState(userModel!));
+    }).catchError((error) {
+      print(error.toString());
+      emit(UserUpdateFailedState());
+    });
+  }
+
+  CategoryModel? categoryModel;
+  void getCategory() {
+    DioHelperStore.getData(url: ApiConstant.CATEGORY).then((value) {
+      categoryModel = CategoryModel.fromJson(value.data);
+      print('NameCate  = ${categoryModel!.data!.data![0].name}');
+      emit(GetCateData());
+    }).catchError((error) {
+      print(error.toString());
+      emit(GetErrorCateData());
+    });
   }
 }

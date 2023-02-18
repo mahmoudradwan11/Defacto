@@ -10,7 +10,7 @@ class NotificationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   return BlocConsumer<DefactoCubit, DefactoStates>(
+    return BlocConsumer<DefactoCubit, DefactoStates>(
         listener: (context, state) {},
         builder: (context, state) {
           var cubit = DefactoCubit.get(context);
@@ -20,12 +20,12 @@ class NotificationScreen extends StatelessWidget {
               title: const Text('Notifications'),
             ),
             body: ListView.separated(
-                itemBuilder:(context,index)=>buildNotificationItem(cubit.notificationModel!.data!.data![index]),
-                separatorBuilder:(context,index)=>BuildDivider(),
-                itemCount: cubit.notificationModel!.data!.data!.length,
+              itemBuilder: (context, index) => buildNotificationItem(
+                  cubit.notificationModel!.data!.data![index]),
+              separatorBuilder: (context, index) => BuildDivider(),
+              itemCount: cubit.notificationModel!.data!.data!.length,
             ),
           );
-        }
-    );
+        });
   }
 }

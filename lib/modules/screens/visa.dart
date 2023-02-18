@@ -14,7 +14,7 @@ class VisaScreen extends StatefulWidget {
 
 class _VisaScreenState extends State<VisaScreen> {
   final Completer<WebViewController> _controller =
-  Completer<WebViewController>();
+      Completer<WebViewController>();
 
   @override
   void initState() {
@@ -28,18 +28,16 @@ class _VisaScreenState extends State<VisaScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar
-          (title: const Text('Visa'),
-            actions: [
-              IconButton(
-                onPressed: () {
-                  paymentExitApp(context);
-                },
-                icon: const Icon(
-                  Icons.exit_to_app,
-                ),
-              )
-            ]),
+        appBar: AppBar(title: const Text('Visa'), actions: [
+          IconButton(
+            onPressed: () {
+              paymentExitApp(context);
+            },
+            icon: const Icon(
+              Icons.exit_to_app,
+            ),
+          )
+        ]),
         body: WebView(
           initialUrl: ApiConstant.visaUrl,
           javascriptMode: JavascriptMode.unrestricted,
@@ -98,9 +96,7 @@ class _VisaScreenState extends State<VisaScreen> {
           ),
           actions: [
             TextButton(
-              onPressed: () {
-
-              },
+              onPressed: () {},
               child: const Text('Yes'),
             ),
             TextButton(
