@@ -1,5 +1,3 @@
-import 'package:defacto/core/controllers/store/store_cubit.dart';
-
 abstract class DefactoStates{}
 class InitialState extends DefactoStates{}
 class ChangeScreenIndex extends DefactoStates{}
@@ -29,7 +27,4 @@ class DeleteFavoriteDataState extends DefactoStates {}
 class AddCounter extends DefactoStates{}
 class MunsCounter extends DefactoStates{}
 class ChangeMoreState extends DefactoStates{}
-class AddSumState extends DefactoStates{}
-class MiunsSumState extends DefactoStates{}
-class getSumState extends DefactoStates{}
 
