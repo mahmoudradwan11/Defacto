@@ -1,11 +1,14 @@
 import 'package:defacto/core/controllers/store/store_cubit.dart';
 import 'package:defacto/core/controllers/store/store_states.dart';
+import 'package:defacto/core/network/local/cache.dart';
 import 'package:defacto/modules/screens/cantact.dart';
 import 'package:defacto/modules/screens/order.dart';
+import 'package:defacto/modules/widgets/builders/defualt_botton.dart';
 import 'package:defacto/modules/widgets/funtions/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'login.dart';
 class Profile extends StatelessWidget {
   const Profile({Key? key}) : super(key: key);
 
@@ -323,6 +326,21 @@ class Profile extends StatelessWidget {
                           ),
                         ],
                       ),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    DefaultButton(
+                      backgroundColor: Colors.black,
+                      borderColor: Colors.white,
+                      buttonWidget:const Text('LOGOUT',style: TextStyle(color: Colors.white),),
+                      function:(){
+                        CacheHelper.removeData(key: 'token').then((value) {
+                          if (value) {
+                            navigateAndFinish(context, Login());
+                          }
+                        });
+                      },
                     )
                   ],
                 ),
