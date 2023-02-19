@@ -10,6 +10,7 @@ import 'package:defacto/modules/widgets/funtions/toast.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'home.dart';
 
 class Login extends StatelessWidget {
@@ -143,6 +144,12 @@ class Login extends StatelessWidget {
                   const SizedBox(
                     height: 40,
                   ),
+                  if (state is LoadingLogin)
+                    LoadingAnimationWidget.inkDrop(
+                      color: Colors.black,
+                      size: 20,
+                    ),
+                  if (state is LoadingLogin) const SizedBox(height: 10),
                   DefaultButton(
                     backgroundColor: Colors.black,
                     buttonWidget: const Text(

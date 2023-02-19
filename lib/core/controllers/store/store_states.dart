@@ -1,4 +1,3 @@
-import 'package:defacto/core/controllers/store/store_cubit.dart';
 import 'package:defacto/models/store_models/login_model.dart';
 
 abstract class DefactoStates {}
@@ -18,6 +17,8 @@ class SearchSuccessState extends DefactoStates {}
 class SearchErrorState extends DefactoStates {}
 
 class GetNotification extends DefactoStates {}
+
+class CheckState extends DefactoStates{}
 
 class ErrorGetNotification extends DefactoStates {}
 
@@ -74,4 +75,6 @@ class UserUpdateSuccessState extends DefactoStates {
 class UserUpdateFailedState extends DefactoStates {}
 class AddSum extends DefactoStates{}
 class MuinsSum extends DefactoStates{}
+class ChooseImage extends DefactoStates{}
+class ChooseWronge extends DefactoStates{}
 

@@ -72,7 +72,6 @@ class DefactoCubit extends Cubit<DefactoStates> {
     currentIndex = index;
     emit(ChangeScreenIndex());
   }
-
   NotificationModel? notificationModel;
   void getNotification() {
     DioHelperStore.getData(url: ApiConstant.NOTIFICATION, token: token)
@@ -202,13 +201,29 @@ class DefactoCubit extends Cubit<DefactoStates> {
   }
 
   LoginModel? userModel;
+  String? name;
+  String? email;
+  String? image;
   void getUserData() {
     DioHelperStore.getData(
       url: ApiConstant.PROFILE,
       token: token,
     ).then((value) {
       userModel = LoginModel.fromJson(value.data);
+      name = userModel!.data!.name;
+      image = userModel!.data!.image;
+      email = userModel!.data!.email;
       print(userModel!.data!.name);
+      print(userModel!.data!.image);
+      if(name==null && email ==null)
+        {
+          name =  "Mahmoud";
+          email = 'mahmoud@gmail.com';
+        }else{
+        name = userModel!.data!.name;
+        image = userModel!.data!.image;
+        email = userModel!.data!.email;
+      }
       emit(UserDataSuccessState(userModel));
     }).catchError((error) {
       print(error.toString());
@@ -249,18 +264,17 @@ class DefactoCubit extends Cubit<DefactoStates> {
       emit(GetErrorCateData());
     });
   }
-  dynamic sum  = 0 ;
   void addSum(dynamic price){
     sumPrice = sumPrice +(price*counter);
     CacheHelper.saveData(key:'Sum', value:sumPrice);
     print('Sum = $sumPrice');
     emit(AddSum());
   }
-  void muins(dynamic price,int count){
+  void muins(dynamic price,int count,int recordId){
     sumPrice = sumPrice - (price*count);
+    deleteCartData(id: recordId);
     CacheHelper.saveData(key:'Sum', value:sumPrice);
     print('Sum = $sumPrice');
     emit(MuinsSum());
   }
-
 }

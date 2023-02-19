@@ -25,7 +25,7 @@ class ProductsScreen extends StatelessWidget {
                 body: Center(
               child: LoadingAnimationWidget.inkDrop(
                 color: Colors.black,
-                size: 30,
+                size: 20,
               ),
             ));
           } else {

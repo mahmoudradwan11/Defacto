@@ -24,6 +24,7 @@ class Cart extends StatelessWidget {
           var search = cubit.searchRecord;
           return Scaffold(
             appBar: AppBar(
+              leading: Icon(Icons.arrow_back),
               centerTitle: true,
               title: const Text('Cart'),
               actions: [

@@ -15,6 +15,8 @@ class Category extends StatelessWidget {
           var cubit = DefactoCubit.get(context);
           return Scaffold(
             appBar: AppBar(
+              leading: Icon(Icons.arrow_back),
+              centerTitle: true,
               title: const Text('Category'),
             ),
             body: SingleChildScrollView(
