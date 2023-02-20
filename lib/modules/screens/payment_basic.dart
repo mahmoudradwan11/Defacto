@@ -173,6 +173,7 @@ class PaymentBasic extends StatelessWidget {
                               price: priceController.text.toString(),
                               phone: phoneController.text);
                         }
+                        cubit.showAlertOrder(context);
                       }),
                 )
               ],

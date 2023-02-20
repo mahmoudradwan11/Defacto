@@ -84,7 +84,8 @@ class Cart extends StatelessWidget {
                                                 color: Colors.white,
                                               ),
                                             ),
-                                            function: () {
+                                            function: (){
+                                              cubit.sendOrderData();
                                               navigateTo(
                                                   context,
                                                   PaymentBasic(

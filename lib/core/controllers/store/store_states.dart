@@ -78,3 +78,10 @@ class MuinsSum extends DefactoStates{}
 class ChooseImage extends DefactoStates{}
 class ChooseWronge extends DefactoStates{}
 
+class GetOrders extends DefactoStates{}
+class ErrorGetOrders extends DefactoStates{}
+
+class SendOrderDataState extends DefactoStates{}
+class ErrorSendOrderDataState extends DefactoStates{}
+class SendContact extends DefactoStates{}
+class ErrorContact extends DefactoStates{}

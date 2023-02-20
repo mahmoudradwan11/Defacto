@@ -6,6 +6,8 @@ import 'package:defacto/models/payment_models/payment_finalToken.dart';
 import 'package:defacto/models/payment_models/payment_order.dart';
 import 'package:defacto/modules/widgets/funtions/toast.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quickalert/models/quickalert_type.dart';
+import 'package:quickalert/widgets/quickalert_dialog.dart';
 
 class PaymentCubit extends Cubit<PaymentStates> {
   PaymentCubit() : super(InitialState());
@@ -26,7 +28,14 @@ class PaymentCubit extends Cubit<PaymentStates> {
       emit(PaymentAuthErrorState());
     });
   }
-
+  void showAlertOrder(context){
+    QuickAlert.show(
+        context: context,
+        type:QuickAlertType.success,
+        title: 'Confirm',
+        text: 'Order Confirm'
+    );
+  }
   OrderId? orderId;
   Future<void> getOrderId({
     required String firstName,

@@ -300,7 +300,7 @@ class Profile extends StatelessWidget {
                           Expanded(
                             child: InkWell(
                               onTap: () {
-                                navigateTo(context, const ContactUs());
+                                navigateTo(context, ContactUs());
                               },
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),

@@ -375,6 +375,7 @@ class ProductDetails extends StatelessWidget {
                       ),
                       function: () {
                         navigateTo(context, PaymentBasic(price: model.price,));
+                        cubit.sendOrderData();
                       },
                       backgroundColor: Colors.black,
                       borderColor: Colors.white,

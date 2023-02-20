@@ -6,6 +6,7 @@ import 'package:defacto/models/store_models/cateogry.dart';
 import 'package:defacto/models/store_models/home_model.dart';
 import 'package:defacto/models/store_models/login_model.dart';
 import 'package:defacto/models/store_models/notification.dart';
+import 'package:defacto/models/store_models/order_model.dart';
 import 'package:defacto/models/store_models/search_model.dart';
 import 'package:defacto/modules/screens/cart.dart';
 import 'package:defacto/modules/screens/category.dart';
@@ -17,6 +18,7 @@ import 'package:defacto/modules/screens/profile.dart';
 import 'package:defacto/modules/screens/sports_products.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:quickalert/quickalert.dart';
 import 'package:sqflite/sqflite.dart';
 
 class DefactoCubit extends Cubit<DefactoStates> {
@@ -276,5 +278,52 @@ class DefactoCubit extends Cubit<DefactoStates> {
     CacheHelper.saveData(key:'Sum', value:sumPrice);
     print('Sum = $sumPrice');
     emit(MuinsSum());
+  }
+  OrderModel? orderModel;
+  void getOrders()
+  {
+    DioHelperStore.getData(url:ApiConstant.ORDERS,token:token).then(
+            (value){
+          orderModel = OrderModel.fromJson(value.data);
+          print('Orders Length = ${orderModel!.data!.data!.length}');
+          emit(GetOrders());
+        }
+    ).catchError((error){
+      print(error.toString());
+      emit(ErrorGetOrders());
+    });
+  }
+  void sendOrderData()
+  {
+    DioHelperStore.postData(url:ApiConstant.ORDERS,token: token,data:{
+      'address_id':'35',
+      'payment_method':'2',
+      'use_points':'false'
+    }).then((value){
+      emit(SendOrderDataState());
+    }).catchError((error){
+      print(error.toString());
+      emit(ErrorSendOrderDataState());
+    });
+  }
+  void sendContact(String message){
+    DioHelperStore.postData(url:ApiConstant.CONTACT, data:{
+      'name':userModel!.data!.name!,
+      'phone':userModel!.data!.phone,
+      'email':userModel!.data!.email,
+      'message':message,
+    }).then((value){
+      emit(SendContact());
+    }).catchError((error){
+      emit(ErrorContact());
+    });
+  }
+  void showAlert(context){
+    QuickAlert.show(
+        context: context,
+        type:QuickAlertType.success,
+        title: 'Send Success',
+        text: 'We will work on your complaint '
+    );
   }
 }
