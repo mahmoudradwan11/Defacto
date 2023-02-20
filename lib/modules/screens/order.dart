@@ -15,6 +15,18 @@ class OrderHistory extends StatelessWidget {
         listener: (context, state) {},
         builder: (context, state) {
           var cubit = DefactoCubit.get(context);
+          if(cubit.orderModel==null||cubit.userModel==null)
+            {
+              return Scaffold(
+                appBar: AppBar(
+                  title:const Text('Order History'),
+                  centerTitle: true,
+                ),
+                body: const Center(
+                  child: Text('No orders')
+                ),
+              );
+            }
           return Scaffold(
           appBar: AppBar(
             title:const Text('Order History'),
