@@ -23,6 +23,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
   void initState() {
     // TODO: implement initState
     DefactoCubit.get(context).getUserData();
+    DefactoCubit.get(context).getOrders();
   }
   var searchController = TextEditingController();
 

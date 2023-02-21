@@ -45,7 +45,6 @@ void main() async {
     startWidget: startWidget,
   ));
 }
-
 class MyApp extends StatelessWidget {
   final Widget? startWidget;
   const MyApp({super.key, this.startWidget});
