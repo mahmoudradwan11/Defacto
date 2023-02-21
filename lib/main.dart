@@ -55,14 +55,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (context) => DefactoCubit()
-            ..getHomeData()
-            ..getNotification()
-            ..getUserData()
-            ..getCategory()
-            ..createDatabase()
-            ..getOrders()
-          ,
+          create: (context) => DefactoCubit()..start(),
         ),
         BlocProvider(create: (context) => PaymentCubit()..getAuthToken()),
       ],

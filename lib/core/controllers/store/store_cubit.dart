@@ -25,6 +25,14 @@ class DefactoCubit extends Cubit<DefactoStates> {
   DefactoCubit() : super(InitialState());
   static DefactoCubit get(context) => BlocProvider.of(context);
   HomeModel? homeModel;
+  void start(){
+     getNotification();
+     getHomeData();
+     getCategory();
+     getOrders();
+     getUserData();
+     createDatabase();
+  }
   void getHomeData() {
     DioHelperStore.getData(url: ApiConstant.HOME, token: token).then((value) {
       homeModel = HomeModel.fromJson(value.data);
@@ -42,6 +50,7 @@ class DefactoCubit extends Cubit<DefactoStates> {
       emit(GetErrorProductData());
     });
   }
+
   List<Widget> categoryScreen = const [
     Electronic(),
     CoronaProducts(),
@@ -74,6 +83,7 @@ class DefactoCubit extends Cubit<DefactoStates> {
     currentIndex = index;
     emit(ChangeScreenIndex());
   }
+
   NotificationModel? notificationModel;
   void getNotification() {
     DioHelperStore.getData(url: ApiConstant.NOTIFICATION, token: token)
@@ -217,11 +227,10 @@ class DefactoCubit extends Cubit<DefactoStates> {
       email = userModel!.data!.email;
       print(userModel!.data!.name);
       print(userModel!.data!.image);
-      if(name==null && email ==null)
-        {
-          name =  "Mahmoud";
-          email = 'mahmoud@gmail.com';
-        }else{
+      if (name == null && email == null) {
+        name = "Mahmoud";
+        email = 'mahmoud@gmail.com';
+      } else {
         name = userModel!.data!.name;
         image = userModel!.data!.image;
         email = userModel!.data!.email;
@@ -255,6 +264,7 @@ class DefactoCubit extends Cubit<DefactoStates> {
       emit(UserUpdateFailedState());
     });
   }
+
   CategoryModel? categoryModel;
   void getCategory() {
     DioHelperStore.getData(url: ApiConstant.CATEGORY).then((value) {
@@ -266,64 +276,66 @@ class DefactoCubit extends Cubit<DefactoStates> {
       emit(GetErrorCateData());
     });
   }
-  void addSum(dynamic price){
-    sumPrice = sumPrice +(price*counter);
-    CacheHelper.saveData(key:'Sum', value:sumPrice);
+
+  void addSum(dynamic price) {
+    sumPrice = sumPrice + (price * counter);
+    CacheHelper.saveData(key: 'Sum', value: sumPrice);
     print('Sum = $sumPrice');
     emit(AddSum());
   }
-  void muins(dynamic price,int count,int recordId){
-    sumPrice = sumPrice - (price*count);
+
+  void muins(dynamic price, int count, int recordId) {
+    sumPrice = sumPrice - (price * count);
     deleteCartData(id: recordId);
-    CacheHelper.saveData(key:'Sum', value:sumPrice);
+    CacheHelper.saveData(key: 'Sum', value: sumPrice);
     print('Sum = $sumPrice');
     emit(MuinsSum());
   }
+
   OrderModel? orderModel;
-  void getOrders()
-  {
-    DioHelperStore.getData(url:ApiConstant.ORDERS,token:token).then(
-            (value){
-          orderModel = OrderModel.fromJson(value.data);
-          print('Orders Length = ${orderModel!.data!.data!.length}');
-          emit(GetOrders());
-        }
-    ).catchError((error){
+  void getOrders() {
+    DioHelperStore.getData(url: ApiConstant.ORDERS, token: token).then((value) {
+      orderModel = OrderModel.fromJson(value.data);
+      print('Orders Length = ${orderModel!.data!.data!.length}');
+      emit(GetOrders());
+    }).catchError((error) {
       print(error.toString());
       emit(ErrorGetOrders());
     });
   }
-  void sendOrderData()
-  {
-    DioHelperStore.postData(url:ApiConstant.ORDERS,token: token,data:{
-      'address_id':'35',
-      'payment_method':'2',
-      'use_points':'false'
-    }).then((value){
+
+  void sendOrderData() {
+    DioHelperStore.postData(url: ApiConstant.ORDERS, token: token, data: {
+      'address_id': '35',
+      'payment_method': '2',
+      'use_points': 'false'
+    }).then((value) {
+      getOrders();
       emit(SendOrderDataState());
-    }).catchError((error){
+    }).catchError((error) {
       print(error.toString());
       emit(ErrorSendOrderDataState());
     });
   }
-  void sendContact(String message){
-    DioHelperStore.postData(url:ApiConstant.CONTACT, data:{
-      'name':userModel!.data!.name!,
-      'phone':userModel!.data!.phone,
-      'email':userModel!.data!.email,
-      'message':message,
-    }).then((value){
+
+  void sendContact(String message) {
+    DioHelperStore.postData(url: ApiConstant.CONTACT, data: {
+      'name': userModel!.data!.name!,
+      'phone': userModel!.data!.phone,
+      'email': userModel!.data!.email,
+      'message': message,
+    }).then((value) {
       emit(SendContact());
-    }).catchError((error){
+    }).catchError((error) {
       emit(ErrorContact());
     });
   }
-  void showAlert(context){
+
+  void showAlert(context) {
     QuickAlert.show(
         context: context,
-        type:QuickAlertType.success,
+        type: QuickAlertType.success,
         title: 'Send Success',
-        text: 'We will work on your complaint '
-    );
+        text: 'We will work on your complaint ');
   }
 }

@@ -1,5 +1,6 @@
 import 'package:defacto/core/controllers/login/login_cubit.dart';
 import 'package:defacto/core/controllers/login/login_states.dart';
+import 'package:defacto/core/controllers/store/store_cubit.dart';
 import 'package:defacto/core/network/local/cache.dart';
 import 'package:defacto/core/network/remote/constants.dart';
 import 'package:defacto/modules/screens/register.dart';

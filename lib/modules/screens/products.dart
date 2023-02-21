@@ -10,9 +10,21 @@ import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'notefication.dart';
 import 'package:badges/badges.dart' as badges;
 
-class ProductsScreen extends StatelessWidget {
-  var searchController = TextEditingController();
+class ProductsScreen extends StatefulWidget {
+
   ProductsScreen({Key? key}) : super(key: key);
+
+  @override
+  State<ProductsScreen> createState() => _ProductsScreenState();
+}
+
+class _ProductsScreenState extends State<ProductsScreen> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    DefactoCubit.get(context).getUserData();
+  }
+  var searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
