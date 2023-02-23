@@ -193,11 +193,12 @@ class DefactoCubit extends Cubit<DefactoStates> {
     });
   }
 
-  void deleteCartData({required int id}) async {
+  void deleteCartData({required int id,required dynamic price,required int count}) async {
     await database!
         .rawDelete('DELETE FROM Cart WHERE id= ?', [id]).then((value) {
       getCartData(database);
       emit(DeleteCartDataState());
+      muins(price, count);
     });
   }
 
@@ -284,9 +285,8 @@ class DefactoCubit extends Cubit<DefactoStates> {
     emit(AddSum());
   }
 
-  void muins(dynamic price, int count, int recordId) {
+  void muins(dynamic price, int count) {
     sumPrice = sumPrice - (price * count);
-    deleteCartData(id: recordId);
     CacheHelper.saveData(key: 'Sum', value: sumPrice);
     print('Sum = $sumPrice');
     emit(MuinsSum());

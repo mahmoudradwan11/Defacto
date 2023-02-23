@@ -8,7 +8,10 @@ Widget buildCartItem(Map model, context) => Dismissible(
       direction: DismissDirection.endToStart,
       background: buildDirectionalDismess(),
       onDismissed: (direction) {
-        DefactoCubit.get(context).muins(num.parse(model['price']),model['counter'],model['id']);
+        DefactoCubit.get(context).deleteCartData(
+            id: model['id'],
+            price: num.parse(model['price']),
+            count: model['counter']);
         showToast('Deleted', ToastStates.ERROR);
       },
       child: Padding(
