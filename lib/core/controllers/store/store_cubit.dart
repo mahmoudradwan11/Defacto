@@ -50,7 +50,9 @@ class DefactoCubit extends Cubit<DefactoStates> {
       emit(GetErrorProductData());
     });
   }
-
+  void updateCounter(){
+    emit(UpdateCounter());
+  }
   List<Widget> categoryScreen = const [
     Electronic(),
     CoronaProducts(),
@@ -127,20 +129,6 @@ class DefactoCubit extends Cubit<DefactoStates> {
       emit(ErrorCreateDatabaseState());
     });
   }
-
-  void addCounter() {
-    counter++;
-    emit(AddCounter());
-  }
-
-  void munsCounter() {
-    counter--;
-    if (counter == 0) {
-      counter = 1;
-    }
-    emit(MunsCounter());
-  }
-
   void getSpecialRecord(String search) async {
     searchRecord = [];
     database!
@@ -201,7 +189,6 @@ class DefactoCubit extends Cubit<DefactoStates> {
       muins(price, count);
     });
   }
-
   bool more = false;
   void changeMore() {
     more = true;
@@ -212,7 +199,9 @@ class DefactoCubit extends Cubit<DefactoStates> {
     more = false;
     emit(ChangeMoreState());
   }
-
+  void updateState(){
+    emit(UpdateProductState());
+  }
   LoginModel? userModel;
   String? name;
   String? email;
@@ -278,20 +267,19 @@ class DefactoCubit extends Cubit<DefactoStates> {
     });
   }
 
-  void addSum(dynamic price) {
+  void addSum(dynamic price,int counter) {
     sumPrice = sumPrice + (price * counter);
     CacheHelper.saveData(key: 'Sum', value: sumPrice);
     print('Sum = $sumPrice');
     emit(AddSum());
   }
 
-  void muins(dynamic price, int count) {
+  void muins(dynamic price, int count){
     sumPrice = sumPrice - (price * count);
     CacheHelper.saveData(key: 'Sum', value: sumPrice);
     print('Sum = $sumPrice');
     emit(MuinsSum());
   }
-
   OrderModel? orderModel;
   void getOrders() {
     DioHelperStore.getData(url: ApiConstant.ORDERS, token: token).then((value) {

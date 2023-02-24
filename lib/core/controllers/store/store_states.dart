@@ -18,7 +18,7 @@ class SearchErrorState extends DefactoStates {}
 
 class GetNotification extends DefactoStates {}
 
-class CheckState extends DefactoStates{}
+class CheckState extends DefactoStates {}
 
 class ErrorGetNotification extends DefactoStates {}
 
@@ -54,10 +54,6 @@ class DeleteCartDataState extends DefactoStates {}
 
 class DeleteFavoriteDataState extends DefactoStates {}
 
-class AddCounter extends DefactoStates {}
-
-class MunsCounter extends DefactoStates {}
-
 class ChangeMoreState extends DefactoStates {}
 
 class UserDataSuccessState extends DefactoStates {
@@ -73,15 +69,23 @@ class UserUpdateSuccessState extends DefactoStates {
 }
 
 class UserUpdateFailedState extends DefactoStates {}
-class AddSum extends DefactoStates{}
-class MuinsSum extends DefactoStates{}
-class ChooseImage extends DefactoStates{}
-class ChooseWronge extends DefactoStates{}
 
-class GetOrders extends DefactoStates{}
-class ErrorGetOrders extends DefactoStates{}
+class AddSum extends DefactoStates {}
 
-class SendOrderDataState extends DefactoStates{}
-class ErrorSendOrderDataState extends DefactoStates{}
-class SendContact extends DefactoStates{}
-class ErrorContact extends DefactoStates{}
+class MuinsSum extends DefactoStates {}
+
+class GetOrders extends DefactoStates {}
+
+class ErrorGetOrders extends DefactoStates {}
+
+class SendOrderDataState extends DefactoStates {}
+
+class ErrorSendOrderDataState extends DefactoStates {}
+
+class SendContact extends DefactoStates {}
+
+class ErrorContact extends DefactoStates {}
+
+class UpdateCounter extends DefactoStates {}
+
+class UpdateProductState extends DefactoStates {}

@@ -68,8 +68,8 @@ class Products {
   String? description;
   List<String>? images;
   bool? inFavorites;
-  bool? inCart;
-
+  bool inCart = false;
+  int counter = 1;
   Products(
       {this.id,
       this.price,
@@ -80,7 +80,7 @@ class Products {
       this.description,
       this.images,
       this.inFavorites,
-      this.inCart});
+      });
 
   Products.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -92,6 +92,5 @@ class Products {
     description = json['description'];
     images = json['images'].cast<String>();
     inFavorites = json['in_favorites'];
-    inCart = json['in_cart'];
   }
 }

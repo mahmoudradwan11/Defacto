@@ -1,9 +1,7 @@
-import 'package:defacto/core/controllers/store/store_cubit.dart';
 import 'package:defacto/models/store_models/home_model.dart';
 import 'package:defacto/modules/screens/product_details.dart';
 import 'package:defacto/modules/widgets/funtions/navigator.dart';
 import 'package:flutter/material.dart';
-
 Widget buildProductItem(Products products, context) => InkWell(
       onTap: () {
         navigateTo(
@@ -30,20 +28,18 @@ Widget buildProductItem(Products products, context) => InkWell(
                     height: 130,
                     decoration: BoxDecoration(
                       color: Colors.grey,
-
                       // borderRadius: BorderRadius.circular(10),
-
                       image: DecorationImage(
                         image: NetworkImage(products.image!),
                         fit: BoxFit.fill,
                       ),
                     ),
                   ),
-                   const Padding(
-                    padding: const EdgeInsets.all(5.0),
+                  Padding(
+                    padding:const EdgeInsets.all(5.0),
                     child: Icon(
                       Icons.favorite,
-                      color:Colors.black
+                      color:products.inCart ?Colors.black:Colors.grey
                     ),
                   )
                 ],

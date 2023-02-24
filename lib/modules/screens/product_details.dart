@@ -119,7 +119,8 @@ class ProductDetails extends StatelessWidget {
                             height: 50,
                             child: IconButton(
                                 onPressed: () {
-                                  cubit.munsCounter();
+                                  model.counter--;
+                                  cubit.updateCounter();
                                 },
                                 icon: const Icon(
                                   Icons.remove,
@@ -131,7 +132,7 @@ class ProductDetails extends StatelessWidget {
                             color: Colors.grey[400],
                             child: Center(
                                 child: Text(
-                              '${cubit.counter}',
+                              '${model.counter}',
                               style: const TextStyle(fontSize: 25),
                             ))),
                         Container(
@@ -142,7 +143,8 @@ class ProductDetails extends StatelessWidget {
                                     topRight: Radius.circular(10))),
                             child: IconButton(
                                 onPressed: () {
-                                  cubit.addCounter();
+                                  model.counter++;
+                                  cubit.updateCounter();
                                 },
                                 icon: const Icon(
                                   Icons.add,
@@ -405,10 +407,12 @@ class ProductDetails extends StatelessWidget {
                             name: model.name!,
                             price: model.price!.toString(),
                             image: model.image!,
-                            counter: cubit.counter,
+                            counter: model.counter!,
                             exit: true
                         );
-                        cubit.addSum(model.price);
+                        model.inCart = true;
+                        cubit.updateState();
+                        cubit.addSum(model.price,model.counter);
                         showToast('Inserted',ToastStates.SUCCESS);
                       },
                       backgroundColor: Colors.white,
