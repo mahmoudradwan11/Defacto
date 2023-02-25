@@ -5,7 +5,7 @@ import 'package:defacto/modules/widgets/builders/default_form_feild.dart';
 import 'package:defacto/modules/widgets/builders/defualt_botton.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:loading_animation_widget/loading_animation_widget.dart';
+import 'package:lottie/lottie.dart';
 
 class PaymentBasic extends StatelessWidget {
   var price;
@@ -44,16 +44,14 @@ class PaymentBasic extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Align(
-                  alignment: AlignmentDirectional.topCenter,
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Container(
-                        width: 500,
-                        child: const Image(
-                          fit: BoxFit.contain,
-                          image: AssetImage('images/visa.png'),
-                        )),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Container(
+                      height: 350,
+                      width: double.infinity,
+                      child:Lottie.asset(
+                        'lottie/payment.json'
+                      )
                   ),
                 ),
                 const Padding(
