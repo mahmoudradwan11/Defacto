@@ -22,7 +22,7 @@ void main() async {
   token = CacheHelper.getData(key: 'token');
   sumPrice = CacheHelper.getData(key: 'Sum');
   sumPrice ??= 0;
-  print('SumPrice =$sumPrice');
+  print('SumPrice = $sumPrice');
   print(token);
   print(onboarding);
   DioHelperPayment.initDio();
