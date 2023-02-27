@@ -101,99 +101,71 @@ class Register extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                    Container(
-                      height: 50,
-                      width: 350,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(color: Colors.black)),
-                      child: defaultFieldForm(
-                          controller: nameController,
-                          keyboard: TextInputType.text,
-                          valid: (value) {
-                            if (value.isEmpty) {
-                              return 'Please Enter Your name';
-                            }
-                            return null;
-                          },
-                          prefix: Icons.person,
-                          hint: 'Full Name',
-                          hintStyle: const TextStyle(color: Colors.grey),
-                          show: false),
-                    ),
+                    defaultFieldForm(
+                        controller: nameController,
+                        keyboard: TextInputType.text,
+                        valid: (value) {
+                          if (value.isEmpty) {
+                            return 'Please Enter Your name';
+                          }
+                          return null;
+                        },
+                        prefix: Icons.person,
+                        hint: 'Full Name',
+                        hintStyle: const TextStyle(color: Colors.grey),
+                        show: false),
                     const SizedBox(
                       height: 15,
                     ),
-                    Container(
-                      height: 50,
-                      width: 350,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(color: Colors.black)),
-                      child: defaultFieldForm(
-                          controller: phoneController,
-                          keyboard: TextInputType.phone,
-                          valid: (value) {
-                            if (value.isEmpty) {
-                              return 'Please Enter Your phone';
-                            }
-                            return null;
-                          },
-                          prefix: Icons.phone,
-                          hint: 'phone',
-                          hintStyle: const TextStyle(color: Colors.grey),
-                          show: false),
-                    ),
+                    defaultFieldForm(
+                        controller: phoneController,
+                        keyboard: TextInputType.phone,
+                        valid: (value) {
+                          if (value.isEmpty) {
+                            return 'Please Enter Your phone';
+                          }
+                          return null;
+                        },
+                        prefix: Icons.phone,
+                        hint: 'phone',
+                        hintStyle: const TextStyle(color: Colors.grey),
+                        show: false),
                     const SizedBox(
                       height: 15,
                     ),
-                    Container(
-                      height: 50,
-                      width: 350,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(color: Colors.black)),
-                      child: defaultFieldForm(
-                          controller: emailController,
-                          keyboard: TextInputType.emailAddress,
-                          valid: (value) {
-                            if (value.isEmpty) {
-                              return 'Please Enter Your Email';
-                            }
-                            return null;
-                          },
-                          prefix: Icons.email,
-                          hint: 'Email',
-                          hintStyle: const TextStyle(color: Colors.grey),
-                          show: false),
-                    ),
+                    defaultFieldForm(
+                        controller: emailController,
+                        keyboard: TextInputType.emailAddress,
+                        valid: (value) {
+                          if (value.isEmpty) {
+                            return 'Please Enter Your Email';
+                          }
+                          return null;
+                        },
+                        prefix: Icons.email,
+                        hint: 'Email',
+                        hintStyle: const TextStyle(color: Colors.grey),
+                        show: false),
                     const SizedBox(
                       height: 15,
                     ),
-                    Container(
-                      height: 50,
-                      width: 350,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(color: Colors.black)),
-                      child: defaultFieldForm(
-                          controller: passwordController,
-                          keyboard: TextInputType.emailAddress,
-                          valid: (value) {
-                            if (value.isEmpty) {
-                              return 'Please Enter Your password';
-                            }
-                            return null;
-                          },
-                          prefix: Icons.lock,
-                          hint: 'password',
-                          hintStyle: const TextStyle(color: Colors.grey),
-                          show: cubit.isPassword,
-                          suffix: cubit.suffix,
-                          suffixPress: () {
-                            cubit.changePasswordVisibility();
-                          }),
-                    ),
+                    defaultFieldForm(
+                        controller: passwordController,
+                        keyboard: TextInputType.emailAddress,
+                        valid: (value) {
+                          if (value.isEmpty) {
+                            return 'Please Enter Your password';
+                          }
+                          return null;
+                        },
+                        prefix: Icons.lock,
+                        hint: 'password',
+                        hintStyle: const TextStyle(color: Colors.grey),
+                        show: cubit.isPassword,
+                        suffix: cubit.suffix,
+                        suffixPress: () {
+                          cubit.changePasswordVisibility();
+                        }),
                     const SizedBox(
                       height: 40,
                     ),

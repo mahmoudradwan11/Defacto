@@ -95,7 +95,6 @@ class Login extends StatelessWidget {
                     height: 20,
                   ),
                   defaultFieldForm(
-                     context: context,
                       controller: emailController,
                       keyboard: TextInputType.emailAddress,
                       valid: (value) {
@@ -112,7 +111,6 @@ class Login extends StatelessWidget {
                     height: 15,
                   ),
                   defaultFieldForm(
-                    context: context,
                       controller: passwordController,
                       keyboard: TextInputType.emailAddress,
                       valid: (value) {
