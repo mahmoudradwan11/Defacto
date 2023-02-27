@@ -10,6 +10,7 @@ import 'package:defacto/modules/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sizer/sizer.dart';
 import 'core/controllers/observer.dart';
 import 'core/network/remote/constants.dart';
 import 'modules/screens/home.dart';
@@ -51,22 +52,25 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) => DefactoCubit()..start(),
-        ),
-        BlocProvider(create: (context) => PaymentCubit()..getAuthToken()),
-      ],
-      child: BlocConsumer<DefactoCubit, DefactoStates>(
-          listener: (context, state) {},
-          builder: (context, state) {
-            return MaterialApp(
-                debugShowCheckedModeBanner: false,
-                title: 'Defacto',
-                theme: lightTheme,
-                home: SplashScreen(nextScreen: startWidget!));
-          }),
+    return Sizer(builder:(
+    (context, orientation, deviceType) => MultiBlocProvider(
+        providers: [
+          BlocProvider(
+            create: (context) => DefactoCubit()..start(),
+          ),
+          BlocProvider(create: (context) => PaymentCubit()..getAuthToken()),
+        ],
+        child: BlocConsumer<DefactoCubit, DefactoStates>(
+            listener: (context, state) {},
+            builder: (context, state) {
+              return MaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  title: 'Defacto',
+                  theme: lightTheme,
+                  home: SplashScreen(nextScreen:startWidget!));
+            }),
+      )
+    )
     );
   }
 }

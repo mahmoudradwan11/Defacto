@@ -2,6 +2,7 @@ import 'package:defacto/models/store_models/home_model.dart';
 import 'package:defacto/modules/screens/product_details.dart';
 import 'package:defacto/modules/widgets/funtions/navigator.dart';
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 Widget buildProductItem(Products products, context) => InkWell(
       onTap: () {
         navigateTo(
@@ -24,8 +25,8 @@ Widget buildProductItem(Products products, context) => InkWell(
                 alignment: AlignmentDirectional.topEnd,
                 children: [
                   Container(
-                    width: 150,
-                    height: 130,
+                    width: 35.w,
+                    height: 16.h,
                     decoration: BoxDecoration(
                       color: Colors.grey,
                       // borderRadius: BorderRadius.circular(10),

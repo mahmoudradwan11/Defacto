@@ -17,14 +17,17 @@ Widget buildCateItem(CateData categoryModel, context, index) => InkWell(
           height:100,
           child: Column(
             children: [
-              Image(
-                image: NetworkImage(categoryModel.image!),
-                height: MediaQuery.of(context).size.height * 0.190,
-                width: MediaQuery.of(context).size.width * 10,
+              Expanded(
+                flex: 4,
+                child: Image(
+                  image: NetworkImage(categoryModel.image!),
+                ),
               ),
-              Text(
-                categoryModel.name!,
-                style: const TextStyle(color: Colors.black, fontSize: 18),
+              Expanded(
+                child: Text(
+                  categoryModel.name!,
+                  style: const TextStyle(color: Colors.black, fontSize: 18),
+                ),
               )
             ],
           ),
