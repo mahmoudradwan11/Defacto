@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'login.dart';
+
 class Profile extends StatelessWidget {
   const Profile({Key? key}) : super(key: key);
 
@@ -18,6 +19,7 @@ class Profile extends StatelessWidget {
         listener: (context, state) {},
         builder: (context, state) {
           var cubit = DefactoCubit.get(context);
+          var deviceSize = MediaQuery.of(context).size;
           return Scaffold(
             appBar: AppBar(
               leading: const Icon(Icons.arrow_back),
@@ -33,53 +35,56 @@ class Profile extends StatelessWidget {
                 child: Column(
                   children: [
                     Container(
-                      height: 100,
+                      height: deviceSize.height * 0.120,
                       width: double.infinity,
                       child: Row(children: [
-                        const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: CircleAvatar(
-                              radius: 40,
-                              backgroundImage: AssetImage('images/user.png')),
-                        ),
-                        const SizedBox(
-                          width: 5,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                cubit.name!,
-                                style: const TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              const SizedBox(
-                                height: 10,
-                              ),
-                              Text(
-                                cubit.email!,
-                                style: const TextStyle(
-                                    color: Colors.grey,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ],
+                        const Expanded(
+                          child: Padding(
+                            padding: EdgeInsets.all(5.0),
+                            child: CircleAvatar(
+                                radius: 50,
+                                backgroundImage: AssetImage('images/user.png')),
                           ),
                         ),
-                        const Spacer(),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: CircleAvatar(
-                              backgroundColor: Colors.grey[400],
-                              child: const Icon(
-                                Icons.edit,
-                                color: Colors.black,
-                              )),
+                        Expanded(
+                          flex: 3,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  cubit.name!,
+                                  style: const TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  cubit.email!,
+                                  style: const TextStyle(
+                                      color: Colors.grey,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: CircleAvatar(
+                                backgroundColor: Colors.grey[400],
+                                child: const Icon(
+                                  Icons.edit,
+                                  color: Colors.black,
+                                )),
+                          ),
                         ),
                       ]),
                     ),
@@ -333,8 +338,11 @@ class Profile extends StatelessWidget {
                     DefaultButton(
                       backgroundColor: Colors.black,
                       borderColor: Colors.white,
-                      buttonWidget:const Text('LOGOUT',style: TextStyle(color: Colors.white),),
-                      function:(){
+                      buttonWidget: const Text(
+                        'LOGOUT',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      function: () {
                         CacheHelper.removeData(key: 'token').then((value) {
                           if (value) {
                             navigateAndFinish(context, Login());

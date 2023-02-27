@@ -14,13 +14,13 @@ Widget buildCateItem(CateData categoryModel, context, index) => InkWell(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
               border: Border.all(color: Colors.black)),
-          height: 100,
+          height:100,
           child: Column(
             children: [
               Image(
                 image: NetworkImage(categoryModel.image!),
-                height: 150,
-                width: 150,
+                height: MediaQuery.of(context).size.height * 0.190,
+                width: MediaQuery.of(context).size.width * 10,
               ),
               Text(
                 categoryModel.name!,

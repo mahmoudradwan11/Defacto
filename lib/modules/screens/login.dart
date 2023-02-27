@@ -1,6 +1,5 @@
 import 'package:defacto/core/controllers/login/login_cubit.dart';
 import 'package:defacto/core/controllers/login/login_states.dart';
-import 'package:defacto/core/controllers/store/store_cubit.dart';
 import 'package:defacto/core/network/local/cache.dart';
 import 'package:defacto/core/network/remote/constants.dart';
 import 'package:defacto/modules/screens/register.dart';
@@ -95,53 +94,41 @@ class Login extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  Container(
-                    height: 50,
-                    width: 350,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: Colors.black)),
-                    child: defaultFieldForm(
-                        controller: emailController,
-                        keyboard: TextInputType.emailAddress,
-                        valid: (value) {
-                          if (value.isEmpty) {
-                            return 'Please Enter Your Email';
-                          }
-                          return null;
-                        },
-                        prefix: Icons.phone,
-                        hint: 'Email',
-                        hintStyle: const TextStyle(color: Colors.grey),
-                        show: false),
-                  ),
+                  defaultFieldForm(
+                     context: context,
+                      controller: emailController,
+                      keyboard: TextInputType.emailAddress,
+                      valid: (value) {
+                        if (value.isEmpty) {
+                          return 'Please Enter Your Email';
+                        }
+                        return null;
+                      },
+                      prefix: Icons.phone,
+                      hint: 'Email',
+                      hintStyle: const TextStyle(color: Colors.grey),
+                      show: false),
                   const SizedBox(
                     height: 15,
                   ),
-                  Container(
-                    height: 50,
-                    width: 350,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        border: Border.all(color: Colors.black)),
-                    child: defaultFieldForm(
-                        controller: passwordController,
-                        keyboard: TextInputType.emailAddress,
-                        valid: (value) {
-                          if (value.isEmpty) {
-                            return 'Please Enter Your password';
-                          }
-                          return null;
-                        },
-                        prefix: Icons.lock,
-                        hint: 'password',
-                        hintStyle: const TextStyle(color: Colors.grey),
-                        show: cubit.passwordShow,
-                        suffix: cubit.suffixIcon,
-                        suffixPress: () {
-                          cubit.changePasswordIcon();
-                        }),
-                  ),
+                  defaultFieldForm(
+                    context: context,
+                      controller: passwordController,
+                      keyboard: TextInputType.emailAddress,
+                      valid: (value) {
+                        if (value.isEmpty) {
+                          return 'Please Enter Your password';
+                        }
+                        return null;
+                      },
+                      prefix: Icons.lock,
+                      hint: 'password',
+                      hintStyle: const TextStyle(color: Colors.grey),
+                      show: cubit.passwordShow,
+                      suffix: cubit.suffixIcon,
+                      suffixPress: () {
+                        cubit.changePasswordIcon();
+                      }),
                   const SizedBox(
                     height: 40,
                   ),
