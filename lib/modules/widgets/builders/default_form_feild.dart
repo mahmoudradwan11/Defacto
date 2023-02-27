@@ -33,6 +33,10 @@ Widget defaultFieldForm({
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
         ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(color: Colors.black),
+        ),
         // borderRadius: BorderRadius.circular(30
         prefixIcon: Icon(
           prefix,
@@ -46,6 +50,7 @@ Widget defaultFieldForm({
               )
             : null,
       ),
+
       keyboardType: keyboard,
       onFieldSubmitted: onSubmit,
       onChanged: onchange,
