@@ -10,6 +10,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lottie/lottie.dart';
 
 class Cart extends StatelessWidget {
   var searchController = TextEditingController();
@@ -175,6 +176,8 @@ class Cart extends StatelessWidget {
                           fontWeight: FontWeight.bold),
                     ),
                   ),
+                  if(cubit.cart.isEmpty)
+                    Lottie.asset('lottie/empty.json'),
                   ListView.separated(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,

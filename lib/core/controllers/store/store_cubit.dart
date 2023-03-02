@@ -78,9 +78,7 @@ class DefactoCubit extends Cubit<DefactoStates> {
       emit(SearchErrorState());
     });
   }
-
   int currentIndex = 0;
-  int counter = 1;
   void changeIndex(int index) {
     currentIndex = index;
     emit(ChangeScreenIndex());

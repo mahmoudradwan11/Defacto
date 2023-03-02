@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:defacto/modules/widgets/funtions/navigator.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class SplashScreen extends StatefulWidget {
   Widget nextScreen;
@@ -15,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget nextScreen;
   Timer? _timer;
   _startDelay() {
-    _timer = Timer(const Duration(seconds: 3), _goNext);
+    _timer = Timer(const Duration(seconds: 5), _goNext);
   }
 
   void _goNext() {
@@ -31,12 +32,21 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
         backgroundColor: Colors.black,
-        body: Center(
-            child: Image(
-          image: AssetImage('images/shopping.png'),
-        )));
+        body: Container(
+          height: double.infinity,
+          width: double.infinity,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Lottie.asset('lottie/shopping.json',height: 300,
+              ),
+            ],
+          ),
+        )
+    );
   }
 
   @override

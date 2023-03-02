@@ -30,6 +30,11 @@ Widget defaultFieldForm({
           borderRadius: BorderRadius.circular(10),
           borderSide: const BorderSide(color: Colors.black),
         ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: const BorderSide(color: Colors.black),
+        ),
+        errorStyle:const TextStyle(color: Colors.red,fontSize: 15),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
         ),

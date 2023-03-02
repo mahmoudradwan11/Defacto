@@ -58,7 +58,7 @@ Widget buildCartItem(Map model, context) => Dismissible(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w500),
                             ),
-                            Spacer(),
+                            const Spacer(),
                             Row(
                               children: [
                                 const Text('Count : '),

@@ -103,7 +103,7 @@ class Login extends StatelessWidget {
                         }
                         return null;
                       },
-                      prefix: Icons.phone,
+                      prefix: Icons.email,
                       hint: 'Email',
                       hintStyle: const TextStyle(color: Colors.grey),
                       show: false),

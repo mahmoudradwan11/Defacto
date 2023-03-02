@@ -1,4 +1,3 @@
-import 'package:defacto/modules/screens/home.dart';
 import 'package:defacto/modules/screens/login.dart';
 import 'package:defacto/modules/screens/register.dart';
 import 'package:defacto/modules/widgets/builders/defualt_botton.dart';
