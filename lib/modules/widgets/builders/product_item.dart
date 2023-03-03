@@ -28,6 +28,7 @@ Widget buildProductItem(Products products, context) => InkWell(
                     width: 35.w,
                     height: 16.h,
                     decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
                       color: Colors.grey,
                       // borderRadius: BorderRadius.circular(10),
                       image: DecorationImage(
