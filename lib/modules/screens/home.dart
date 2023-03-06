@@ -2,8 +2,7 @@ import 'package:defacto/core/controllers/store/store_cubit.dart';
 import 'package:defacto/core/controllers/store/store_states.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:badges/badges.dart' as badges;
+import 'package:google_nav_bar/google_nav_bar.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
@@ -16,50 +15,32 @@ class Home extends StatelessWidget {
           return Scaffold(
             backgroundColor: Colors.white,
             body: cubit.screens[cubit.currentIndex],
-            bottomNavigationBar: BottomNavigationBar(
-              items: [
-                const BottomNavigationBarItem(
-                  icon: FaIcon(FontAwesomeIcons.house),
-                  label: 'Home',
+            bottomNavigationBar:Padding(
+              padding: const EdgeInsets.only(left:10,right: 10,bottom: 10),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.circular(20)
                 ),
-                const BottomNavigationBarItem(
-                  icon: Icon(Icons.category),
-                  label: 'Category',
-                ),
-                BottomNavigationBarItem(
-                  icon: badges.Badge(
-                    badgeAnimation: const badges.BadgeAnimation.slide(
-                      animationDuration: Duration(seconds: 1),
-                      colorChangeAnimationDuration: Duration(seconds: 1),
-                      loopAnimation: false,
-                      curve: Curves.fastOutSlowIn,
-                      colorChangeAnimationCurve: Curves.easeInCubic,
-                    ),
-                    position: badges.BadgePosition.topEnd(top: -15, end: -12),
-                    badgeStyle: badges.BadgeStyle(
-                      padding: const EdgeInsets.all(3),
-                      borderRadius: BorderRadius.circular(4),
-                      badgeColor: Colors.red,
-                    ),
-                    badgeContent: Text(
-                      '${cubit.cart.length}',
-                      style: const TextStyle(color: Colors.white),
-                    ),
-                    child: const Icon(
-                      Icons.add_shopping_cart,
-                    ),
+                child: Padding(
+                  padding: const EdgeInsets.only(left:5,right: 5,bottom: 5,top:5),
+                  child: GNav(
+
+                    tabBorderRadius:20,
+                    gap:5,
+                    backgroundColor: Colors.black,
+                    color: Colors.white,
+                    activeColor: Colors.black,
+                    tabBackgroundColor: Colors.white,
+                    onTabChange:(index)
+                    {
+                      cubit.changeIndex(index);
+                    },
+                    padding:const EdgeInsets.all(10),
+                    tabs:cubit.tabs,
                   ),
-                  label: 'Cart',
                 ),
-                const BottomNavigationBarItem(
-                  icon: Icon(Icons.person),
-                  label: 'Profile',
-                ),
-              ],
-              currentIndex: cubit.currentIndex,
-              onTap: (index) {
-                cubit.changeIndex(index);
-              },
+              ),
             ),
           );
         });

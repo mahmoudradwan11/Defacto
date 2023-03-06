@@ -18,6 +18,7 @@ import 'package:defacto/modules/screens/profile.dart';
 import 'package:defacto/modules/screens/sports_products.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:quickalert/quickalert.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -33,6 +34,12 @@ class DefactoCubit extends Cubit<DefactoStates> {
      getUserData();
      createDatabase();
   }
+  List<GButton> tabs =const [
+    GButton(icon:Icons.home,text: 'Home',),
+    GButton(icon:Icons.category,text: 'Category',),
+    GButton(icon:Icons.shopping_cart,text: 'Cart',),
+    GButton(icon:Icons.person,text: 'Profile',),
+  ];
   void getHomeData() {
     DioHelperStore.getData(url: ApiConstant.HOME, token: token).then((value) {
       homeModel = HomeModel.fromJson(value.data);
