@@ -145,7 +145,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Container(
-                          height: 220,
+                          height: 250,
                           child: ListView.separated(
                               scrollDirection: Axis.horizontal,
                               shrinkWrap: true,
@@ -166,7 +166,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Container(
-                          height: 220,
+                          height: 250,
                           child: ListView.separated(
                               scrollDirection: Axis.horizontal,
                               shrinkWrap: true,
@@ -187,7 +187,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Container(
-                          height: 220,
+                          height: 250,
                           child: ListView.separated(
                               scrollDirection: Axis.horizontal,
                               shrinkWrap: true,
@@ -208,7 +208,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Container(
-                          height: 220,
+                          height: 250,
                           child: ListView.separated(
                               scrollDirection: Axis.horizontal,
                               shrinkWrap: true,

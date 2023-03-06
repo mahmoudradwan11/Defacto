@@ -24,7 +24,7 @@ class CoronaProducts extends StatelessWidget {
                 child: Container(
                   color: Colors.white,
                   child: GridView.count(
-                    childAspectRatio: 1 / 1.17,
+                    childAspectRatio: 1 / 1.36,
                     mainAxisSpacing: 1.0,
                     crossAxisSpacing: 1.0,
                     physics: const NeverScrollableScrollPhysics(),
