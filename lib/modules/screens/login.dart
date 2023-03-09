@@ -2,6 +2,7 @@ import 'package:defacto/core/controllers/login/login_cubit.dart';
 import 'package:defacto/core/controllers/login/login_states.dart';
 import 'package:defacto/core/network/local/cache.dart';
 import 'package:defacto/core/network/remote/constants.dart';
+import 'package:defacto/modules/screens/drawer.dart';
 import 'package:defacto/modules/screens/register.dart';
 import 'package:defacto/modules/widgets/builders/default_form_feild.dart';
 import 'package:defacto/modules/widgets/builders/defualt_botton.dart';
@@ -11,7 +12,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-import 'home.dart';
 
 class Login extends StatelessWidget {
   Login({Key? key}) : super(key: key);
@@ -31,7 +31,7 @@ class Login extends StatelessWidget {
                 .then((value) {
               token = state.model.data!.token;
               showToast('${state.model.message}', ToastStates.SUCCESS);
-              navigateAndFinish(context, const Home());
+              navigateAndFinish(context, const DrawerPage());
             });
           } else {
             print(state.model.message);
