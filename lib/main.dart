@@ -5,6 +5,7 @@ import 'package:defacto/core/network/local/cache.dart';
 import 'package:defacto/core/network/remote/payment_helper.dart';
 import 'package:defacto/core/network/remote/store_helper.dart';
 import 'package:defacto/core/themes/light.dart';
+import 'package:defacto/modules/screens/drawer.dart';
 import 'package:defacto/modules/screens/onboarding.dart';
 import 'package:defacto/modules/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -13,8 +14,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
 import 'core/controllers/observer.dart';
 import 'core/network/remote/constants.dart';
-import 'modules/screens/home.dart';
 import 'modules/screens/login.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   DioHelperStore.init();
@@ -35,7 +36,7 @@ void main() async {
   Widget startWidget;
   if (onboarding != null) {
     if (token != null) {
-      startWidget = const Home();
+      startWidget = const DrawerPage();
     } else {
       startWidget = Login();
     }
@@ -46,31 +47,31 @@ void main() async {
     startWidget: startWidget,
   ));
 }
+
 class MyApp extends StatelessWidget {
   final Widget? startWidget;
   const MyApp({super.key, this.startWidget});
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return Sizer(builder:(
-    (context, orientation, deviceType) => MultiBlocProvider(
-        providers: [
-          BlocProvider(
-            create: (context) => DefactoCubit()..start(),
-          ),
-          BlocProvider(create: (context) => PaymentCubit()..getAuthToken()),
-        ],
-        child: BlocConsumer<DefactoCubit, DefactoStates>(
-            listener: (context, state) {},
-            builder: (context, state) {
-              return MaterialApp(
-                  debugShowCheckedModeBanner: false,
-                  title: 'Defacto',
-                  theme: lightTheme,
-                  home: SplashScreen(nextScreen:startWidget!));
-            }),
-      )
-    )
-    );
+    return Sizer(
+        builder: ((context, orientation, deviceType) => MultiBlocProvider(
+              providers: [
+                BlocProvider(
+                  create: (context) => DefactoCubit()..start(),
+                ),
+                BlocProvider(
+                    create: (context) => PaymentCubit()..getAuthToken()),
+              ],
+              child: BlocConsumer<DefactoCubit, DefactoStates>(
+                  listener: (context, state) {},
+                  builder: (context, state) {
+                    return MaterialApp(
+                        debugShowCheckedModeBanner: false,
+                        title: 'Defacto',
+                        theme: lightTheme,
+                        home: SplashScreen(nextScreen: startWidget!));
+                  }),
+            )));
   }
 }

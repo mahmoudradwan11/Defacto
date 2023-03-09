@@ -25,7 +25,6 @@ class Home extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.only(left:5,right: 5,bottom: 5,top:5),
                   child: GNav(
-
                     tabBorderRadius:20,
                     gap:5,
                     backgroundColor: Colors.black,
