@@ -25,14 +25,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
     DefactoCubit.get(context).getUserData();
     DefactoCubit.get(context).getOrders();
   }
-
-  Future<void> onRefresh() async {
-    DefactoCubit.get(context).getUserData();
-    return await Future.delayed(const Duration(seconds: 2));
-  }
-
   var searchController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<DefactoCubit, DefactoStates>(

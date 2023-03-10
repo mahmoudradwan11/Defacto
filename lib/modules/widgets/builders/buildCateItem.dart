@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:defacto/core/controllers/store/store_cubit.dart';
 import 'package:defacto/models/store_models/cateogry.dart';
 import 'package:defacto/modules/widgets/funtions/navigator.dart';
@@ -19,9 +20,15 @@ Widget buildCateItem(CateData categoryModel, context, index) => InkWell(
             children: [
               Expanded(
                 flex: 4,
-                child: Image(
-                  image: NetworkImage(categoryModel.image!),
-                ),
+                child: CachedNetworkImage(
+                    imageUrl: categoryModel.image!,
+                    imageBuilder: (context,imageProvider)=>Image(image: imageProvider),
+                  placeholder:(context,url)=>const Center(child: CircularProgressIndicator(color: Colors.black,),),
+                  errorWidget: (context,url,error){
+                    print(error.toString());
+                    return const Center(child: CircularProgressIndicator(color: Colors.black,),);
+                  }
+              ),
               ),
               Expanded(
                 child: Text(

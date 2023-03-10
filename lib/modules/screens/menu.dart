@@ -6,9 +6,18 @@ import 'package:defacto/modules/widgets/funtions/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
-
-class MenuPage extends StatelessWidget {
+class MenuPage extends StatefulWidget {
   const MenuPage({Key? key}) : super(key: key);
+  @override
+  State<MenuPage> createState() => _MenuPageState();
+}
+class _MenuPageState extends State<MenuPage> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    DefactoCubit.get(context).getUserData();
+  }
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<DefactoCubit, DefactoStates>(

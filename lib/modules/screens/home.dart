@@ -4,8 +4,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
+
+  @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    DefactoCubit.get(context).getUserData();
+    DefactoCubit.get(context).getOrders();
+  }
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<DefactoCubit, DefactoStates>(
