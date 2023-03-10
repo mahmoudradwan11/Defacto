@@ -59,7 +59,6 @@ class NotificationData {
   String? message;
 
   NotificationData({this.id, this.title, this.message});
-
   NotificationData.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];

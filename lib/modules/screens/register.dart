@@ -2,7 +2,7 @@ import 'package:defacto/core/controllers/register/register_cubit.dart';
 import 'package:defacto/core/controllers/register/register_states.dart';
 import 'package:defacto/core/network/local/cache.dart';
 import 'package:defacto/core/network/remote/constants.dart';
-import 'package:defacto/modules/screens/drawer.dart';
+import 'package:defacto/modules/screens/home.dart';
 import 'package:defacto/modules/screens/login.dart';
 import 'package:defacto/modules/widgets/builders/default_form_feild.dart';
 import 'package:defacto/modules/widgets/builders/defualt_botton.dart';
@@ -37,7 +37,7 @@ class Register extends StatelessWidget {
                 token = state.loginModel.data!.token!;
                 navigateAndFinish(
                   context,
-                  const DrawerPage(),
+                  const Home(),
                 );
               });
             } else {

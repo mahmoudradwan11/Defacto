@@ -6,7 +6,6 @@ import 'package:defacto/modules/widgets/builders/product_item.dart';
 import 'package:defacto/modules/widgets/funtions/navigator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'notefication.dart';
 import 'package:badges/badges.dart' as badges;
@@ -44,12 +43,6 @@ class _ProductsScreenState extends State<ProductsScreen> {
             return Scaffold(
               appBar: AppBar(
                 centerTitle: true,
-                leading: IconButton(
-                  onPressed: () {
-                    ZoomDrawer.of(context)!.toggle();
-                  },
-                  icon: const Icon(Icons.menu),
-                ),
                 title: Row(
                   children: const [
                     Text(
