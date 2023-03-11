@@ -17,7 +17,6 @@ import 'package:defacto/modules/screens/products.dart';
 import 'package:defacto/modules/screens/profile.dart';
 import 'package:defacto/modules/screens/sports_products.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:quickalert/quickalert.dart';
@@ -56,11 +55,6 @@ class DefactoCubit extends Cubit<DefactoStates> {
     }).catchError((error) {
       print(error.toString());
       emit(GetErrorProductData());
-    });
-  }
-   void setBadge(){
-     FlutterAppBadger.updateBadgeCount(cart.length).then((value){
-      print('Done');
     });
   }
   void updateCounter(){
