@@ -403,17 +403,21 @@ class ProductDetails extends StatelessWidget {
                         ],
                       ),
                       function: () {
-                        cubit.insertCart(
-                            name: model.name!,
-                            price: model.price!.toString(),
-                            image: model.image!,
-                            counter: model.counter!,
-                            exit: true
-                        );
-                        model.inCart = true;
-                        cubit.updateState();
-                        cubit.addSum(model.price,model.counter);
-                        showToast('Inserted',ToastStates.SUCCESS);
+                        if(model.inCart == false) {
+                          cubit.insertCart(
+                              name: model.name!,
+                              price: model.price!.toString(),
+                              image: model.image!,
+                              counter: model.counter!,
+                              exit: true
+                          );
+                          model.inCart = true;
+                          cubit.updateState();
+                          cubit.addSum(model.price, model.counter);
+                          showToast('Inserted', ToastStates.SUCCESS);
+                        }else{
+                          showToast('Already In Cart', ToastStates.ERROR);
+                        }
                       },
                       backgroundColor: Colors.white,
                       borderColor: Colors.black,
