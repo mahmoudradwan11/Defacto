@@ -43,14 +43,6 @@ class DefactoCubit extends Cubit<DefactoStates> {
   void getHomeData() {
     DioHelperStore.getData(url: ApiConstant.HOME, token: token).then((value) {
       homeModel = HomeModel.fromJson(value.data);
-      print('Price = ${homeModel!.data!.products![0].price}');
-      print('Image = ${homeModel!.data!.products![0].images![0]}');
-      print('Name  = ${homeModel!.data!.products![0].name}');
-      print('Image1 = ${homeModel!.data!.products![0].images![1]}');
-      print('Products length = ${homeModel!.data!.products!.length}');
-      print('BestSeller length = ${homeModel!.data!.popular!.length}');
-      print('Exclusive length = ${homeModel!.data!.exclusive!.length}');
-      print('ForYou length = ${homeModel!.data!.forYou!.length}');
       emit(GetProductData());
     }).catchError((error) {
       print(error.toString());
@@ -78,7 +70,6 @@ class DefactoCubit extends Cubit<DefactoStates> {
       },
     ).then((value) {
       searchModel = SearchModel.fromJson(value.data);
-      print('search = ${searchModel!.data!.data![0].name}');
       emit(SearchSuccessState());
     }).catchError((error) {
       print("error occur:${error.toString()}");
@@ -96,7 +87,6 @@ class DefactoCubit extends Cubit<DefactoStates> {
     DioHelperStore.getData(url: ApiConstant.NOTIFICATION, token: token)
         .then((value) {
       notificationModel = NotificationModel.fromJson(value.data);
-      print('not = ${notificationModel!.data!.data![0].title}');
       emit(GetNotification());
     }).catchError((error) {
       print(error.toString());
@@ -142,7 +132,6 @@ class DefactoCubit extends Cubit<DefactoStates> {
       value.forEach((element) {
         searchRecord.add(element);
       });
-      print("Search record  = $searchRecord");
       emit(SearchDataState());
     }).catchError((error) {
       print('Error occur no data for search');
@@ -162,7 +151,6 @@ class DefactoCubit extends Cubit<DefactoStates> {
           .rawInsert(
               'INSERT INTO Cart(name,price,image,counter,exit) VALUES("$name","$price","$image","$counter","$exit")')
           .then((value) {
-        print('$value Inserted Successfully');
         emit(InsertCartState());
         getCartData(database);
       }).catchError((error) {
@@ -178,7 +166,6 @@ class DefactoCubit extends Cubit<DefactoStates> {
       value.forEach((element) {
         cart.add(element);
       });
-      print(cart);
       emit(GetCartState());
     }).catchError((error) {
       print('Error occur no data');
