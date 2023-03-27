@@ -68,7 +68,7 @@ class PaymentBasic extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
                     color: Colors.grey[200],
-                    child: defaultFieldForm(
+                    child: DefaultFieldForm(
                         show: false,
                         controller: firstNameController,
                         keyboard: TextInputType.text,
@@ -86,7 +86,7 @@ class PaymentBasic extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
                     color: Colors.grey[200],
-                    child: defaultFieldForm(
+                    child: DefaultFieldForm(
                         show: false,
                         controller: lastNameController,
                         keyboard: TextInputType.text,
@@ -104,7 +104,7 @@ class PaymentBasic extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
                     color: Colors.grey[200],
-                    child: defaultFieldForm(
+                    child: DefaultFieldForm(
                         show: false,
                         controller: phoneController,
                         keyboard: TextInputType.phone,
@@ -122,7 +122,7 @@ class PaymentBasic extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
                     color: Colors.grey[200],
-                    child: defaultFieldForm(
+                    child: DefaultFieldForm(
                         show: false,
                         controller: emailController,
                         keyboard: TextInputType.emailAddress,
@@ -140,7 +140,7 @@ class PaymentBasic extends StatelessWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: Container(
                     color: Colors.grey[200],
-                    child: defaultFieldForm(
+                    child: DefaultFieldForm(
                         show: false,
                         controller: priceController,
                         keyboard: TextInputType.text,

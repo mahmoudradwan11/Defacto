@@ -101,7 +101,7 @@ class Register extends StatelessWidget {
                     const SizedBox(
                       height: 20,
                     ),
-                    defaultFieldForm(
+                    DefaultFieldForm(
                         controller: nameController,
                         keyboard: TextInputType.text,
                         valid: (value) {
@@ -117,7 +117,7 @@ class Register extends StatelessWidget {
                     const SizedBox(
                       height: 15,
                     ),
-                    defaultFieldForm(
+                    DefaultFieldForm(
                         controller: phoneController,
                         keyboard: TextInputType.phone,
                         valid: (value) {
@@ -133,7 +133,7 @@ class Register extends StatelessWidget {
                     const SizedBox(
                       height: 15,
                     ),
-                    defaultFieldForm(
+                    DefaultFieldForm(
                         controller: emailController,
                         keyboard: TextInputType.emailAddress,
                         valid: (value) {
@@ -149,7 +149,7 @@ class Register extends StatelessWidget {
                     const SizedBox(
                       height: 15,
                     ),
-                    defaultFieldForm(
+                    DefaultFieldForm(
                         controller: passwordController,
                         keyboard: TextInputType.emailAddress,
                         valid: (value) {

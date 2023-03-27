@@ -94,7 +94,7 @@ class Login extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  defaultFieldForm(
+                  DefaultFieldForm(
                       controller: emailController,
                       keyboard: TextInputType.emailAddress,
                       valid: (value) {
@@ -110,7 +110,7 @@ class Login extends StatelessWidget {
                   const SizedBox(
                     height: 15,
                   ),
-                  defaultFieldForm(
+                  DefaultFieldForm(
                       controller: passwordController,
                       keyboard: TextInputType.emailAddress,
                       valid: (value) {
@@ -130,26 +130,25 @@ class Login extends StatelessWidget {
                   const SizedBox(
                     height: 40,
                   ),
-                  if (state is LoadingLogin)
-                    LoadingAnimationWidget.inkDrop(
-                      color: Colors.black,
-                      size: 20,
-                    ),
                   if (state is LoadingLogin) const SizedBox(height: 10),
+                  state is LoadingLogin? LoadingAnimationWidget.inkDrop(
+                    color: Colors.black,
+                    size: 20,
+                  ):
                   DefaultButton(
-                    backgroundColor: Colors.black,
-                    buttonWidget: const Text(
-                      'Sign In',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    function: () {
-                      if (formKey.currentState!.validate()) {
-                        cubit.loginUser(
-                            email: emailController.text,
-                            password: passwordController.text);
-                      }
-                    },
-                  ),
+                         backgroundColor: Colors.black,
+                         buttonWidget: const Text(
+                           'Sign In',
+                           style: TextStyle(color: Colors.white),
+                         ),
+                         function: () {
+                           if (formKey.currentState!.validate()) {
+                             cubit.loginUser(
+                                 email: emailController.text,
+                                 password: passwordController.text);
+                           }
+                         },
+                       ),
                   const SizedBox(
                     height: 15,
                   ),
