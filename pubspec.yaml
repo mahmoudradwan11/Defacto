@@ -32,7 +32,7 @@ dependencies:
   flutter:
     sdk: flutter
   bloc: ^8.1.1
-  dio: ^5.0.2
+  dio: ^5.0.3
   fluttertoast: ^8.2.1
   flutter_bloc: ^8.1.2
   sqflite: ^2.2.5

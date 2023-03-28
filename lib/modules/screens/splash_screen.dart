@@ -33,7 +33,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.white,
         body: Container(
           height: double.infinity,
           width: double.infinity,
@@ -41,7 +41,7 @@ class _SplashScreenState extends State<SplashScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Lottie.asset('lottie/shopping.json',height: 300,
+              Lottie.asset('lottie/Defacto_logo.json',height: 300,
               ),
             ],
           ),
